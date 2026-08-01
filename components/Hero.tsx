@@ -18,26 +18,24 @@ export function Hero() {
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-6 max-w-xl space-y-3">
-              <p className="text-[17px] leading-relaxed text-[var(--ink)]">
-                Программа создана для мужчин с высоким темпом жизни и высоким уровнем амбиций.
+            <div className="mt-6 max-w-xl space-y-4">
+              <p className="text-[17px] leading-relaxed text-[var(--ink-soft)]">
+                Персональная программа для предпринимателей и амбициозных мужчин, которые хотят выглядеть так же дорого, как стоят их амбиции.
               </p>
-              <p className="text-[16px] leading-relaxed text-[var(--ink-soft)]">
-                Это люди, для которых внешность — не просто вопрос красоты, а вопрос доверия, статуса, первого впечатления и возможностей.
-              </p>
+              <ul className="space-y-2 text-[15px] text-[var(--ink)]">
+                {["Только 3 места в месяц", "Персональное сопровождение", "Гарантия результата"].map((t) => (
+                  <li key={t} className="flex items-center gap-2.5">
+                    <span aria-hidden className="text-emerald-400">✔</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9 flex flex-col sm:flex-row gap-3">
               <a href="#lead" className="chrome-btn rounded-full text-[15px] font-semibold px-6 py-3.5 text-center transition whitespace-normal">Получить бесплатную диагностику</a>
               <a href="#program" className="ghost-btn rounded-full text-[15px] font-medium px-6 py-3.5 text-center transition whitespace-normal">Как проходит программа</a>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-6 text-[13px] text-[var(--ink-soft)] max-w-md">
-              <div><span className="block text-[var(--ink)] text-xl sm:text-2xl font-semibold tracking-tight">11</span>недель работы</div>
-              <div><span className="block text-[var(--ink)] text-xl sm:text-2xl font-semibold tracking-tight">1:1</span>сопровождение</div>
-              <div><span className="block text-[var(--ink)] text-xl sm:text-2xl font-semibold tracking-tight">100%</span>конфиденциальность</div>
             </div>
           </Reveal>
         </div>
