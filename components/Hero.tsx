@@ -18,10 +18,14 @@ export function Hero() {
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-[17px] leading-relaxed text-[var(--ink-soft)] max-w-xl">
-              Персональная программа для мужчин, которые хотят выглядеть дорого,
-              уверенно и производить сильное первое впечатление.
-            </p>
+            <div className="mt-6 max-w-xl space-y-3">
+              <p className="text-[17px] leading-relaxed text-[var(--ink)]">
+                Программа создана для мужчин с высоким темпом жизни и высоким уровнем амбиций.
+              </p>
+              <p className="text-[16px] leading-relaxed text-[var(--ink-soft)]">
+                Это люди, для которых внешность — не просто вопрос красоты, а вопрос доверия, статуса, первого впечатления и возможностей.
+              </p>
+            </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9 flex flex-col sm:flex-row gap-3">
