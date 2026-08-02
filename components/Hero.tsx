@@ -8,13 +8,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
           <Reveal>
-            <span className="inline-flex items-center gap-2 text-[13px] font-medium text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-3 py-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              20% действий — 80% результата
-            </span>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight-display leading-[1.04] chrome-text text-balance">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight-display leading-[1.04] chrome-text text-balance">
               Лицо, которому доверяют за 11 недель
             </h1>
           </Reveal>
@@ -24,7 +18,7 @@ export function Hero() {
                 Персональная программа для предпринимателей и амбициозных мужчин, которые хотят выглядеть так же дорого, как стоят их амбиции.
               </p>
               <ul className="space-y-2 text-[15px] text-[var(--ink)]">
-                {["20% действий — 80% результата", "Персональное сопровождение", "Гарантия результата"].map((t) => (
+                {["Видимый результат на 4-й неделе", "Персональное сопровождение", "Гарантия результата"].map((t) => (
                   <li key={t} className="flex items-center gap-2.5">
                     <span aria-hidden className="text-emerald-400">✔</span>
                     <span>{t}</span>
