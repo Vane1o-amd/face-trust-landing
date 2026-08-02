@@ -3,8 +3,6 @@ import { Reveal } from "./Reveal";
 export function Guarantee() {
   return (
     <section id="guarantee" className="py-24 sm:py-32 bg-moss text-white border-t border-[var(--line)] relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full opacity-25 blur-[140px] blob-moss" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-50" style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(160,160,175,0.18), transparent 70%)" }} />
       <div className="relative mx-auto max-w-4xl px-5 sm:px-8 text-center">
         <Reveal>
           <span className="text-[13px] font-medium uppercase tracking-wider text-white/50">Гарантия</span>

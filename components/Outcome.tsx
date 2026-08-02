@@ -12,7 +12,6 @@ const ITEMS = [
 export function Outcome() {
   return (
     <section id="outcome" className="py-24 sm:py-32 border-t border-[var(--line)] bg-moss relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-24 left-0 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] blob-moss" />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Что вы получаете</p>

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #101013;
-  --bg-soft: #161619;
-  --bg-card: #1d1d21;
-  --bg-sand: #1a1814;
-  --bg-moss: #131711;
-  --bg-stone: #181714;
+  --bg: #0c0c0f;
+  --bg-soft: #151519;
+  --bg-card: #1f1f24;
+  --bg-sand: #17140e;
+  --bg-moss: #0f140d;
+  --bg-stone: #13110b;
   --bg-earth-card: #221f1b;
   --ink: #f7f6f2;
   --ink-soft: #b3aea3;
@@ -48,11 +48,6 @@ body {
 .bg-sand { background: var(--bg-sand); }
 .bg-moss { background: var(--bg-moss); }
 .bg-stone { background: var(--bg-stone); }
-
-/* Organic blobs */
-.blob-moss { background: radial-gradient(closest-side, rgba(107,140,90,0.28), transparent 70%); }
-.blob-sand { background: radial-gradient(closest-side, rgba(196,184,163,0.18), transparent 70%); }
-.blob-stone { background: radial-gradient(closest-side, rgba(125,128,117,0.20), transparent 70%); }
 
 /* Nature accent utilities */
 .text-moss { color: var(--moss-light); }

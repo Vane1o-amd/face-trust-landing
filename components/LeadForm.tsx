@@ -87,7 +87,6 @@ export function LeadForm() {
 
   return (
     <section id="lead" className="py-24 sm:py-32 bg-moss border-t border-[var(--line)] relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full opacity-30 blur-[120px] blob-sand" />
       <div className="relative mx-auto max-w-2xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Заявка</p>

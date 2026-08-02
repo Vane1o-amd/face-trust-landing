@@ -3,8 +3,6 @@ import { Reveal } from "./Reveal";
 export function Hero() {
   return (
     <section id="top" className="pt-36 pb-20 sm:pt-44 sm:pb-28 relative overflow-hidden bg-moss">
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full opacity-40 blur-[120px] blob-moss" />
-      <div aria-hidden className="pointer-events-none absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full opacity-30 blur-[100px] blob-sand" />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
           <Reveal>

@@ -17,7 +17,6 @@ const PAIRS = [
 export function Trust() {
   return (
     <section id="trust" className="py-24 sm:py-32 border-t border-[var(--line)] bg-[var(--bg-soft)] relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-24 right-0 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] blob-stone" />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Блок доверия</p>

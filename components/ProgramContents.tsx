@@ -115,7 +115,6 @@ export function ProgramContents() {
 
   return (
     <section id="program" className="py-24 sm:py-32 bg-[var(--bg-soft)] border-t border-[var(--line)] relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-24 right-0 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] blob-stone" />
       <div className="mx-auto max-w-6xl px-5 sm:px-8 relative">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Ваш путь за 11 недель</p>
