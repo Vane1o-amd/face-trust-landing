@@ -1,6 +1,7 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Problem } from "@/components/Problem";
+import { Outcome } from "@/components/Outcome";
 import { Diagnostic } from "@/components/Diagnostic";
 import { Timeline } from "@/components/Timeline";
 import { ProgramContents } from "@/components/ProgramContents";
@@ -18,6 +19,7 @@ export default function Page() {
       <main>
         <Hero />
         <Problem />
+        <Outcome />
         <Diagnostic />
         <Timeline />
         <ProgramContents />
