@@ -36,7 +36,7 @@ export function Bonuses() {
         </div>
         <Reveal delay={0.1}>
           <div className="mt-8 metallic-border rounded-2xl p-8 sm:p-10 text-center glow">
-            <p className="text-[14px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Общая стоимость $4 149</p>
+            <p className="text-[14px] font-medium uppercase tracking-wider text-[var(--ink-soft)] line-through decoration-[var(--ink-soft)] decoration-1">Общая стоимость $4 149</p>
             <p className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight-display chrome-text">
               Всё это вы получаете за $500
             </p>
