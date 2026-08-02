@@ -8,7 +8,7 @@ const STEPS = [
 
 export function Diagnostic() {
   return (
-    <section id="diagnostic" className="py-24 sm:py-32 bg-[var(--bg-soft)] border-t border-[var(--line)]">
+    <section id="diagnostic" className="py-24 sm:py-32 bg-sand border-t border-[var(--line)]">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
           <Reveal>

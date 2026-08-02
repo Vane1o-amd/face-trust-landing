@@ -12,7 +12,7 @@ const BONUSES = [
 
 export function Bonuses() {
   return (
-    <section id="bonuses" className="py-24 sm:py-32 border-t border-[var(--line)]">
+    <section id="bonuses" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Бонусы</p>

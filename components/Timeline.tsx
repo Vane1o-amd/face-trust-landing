@@ -88,7 +88,7 @@ const PHASES: Phase[] = [
 
 export function Timeline() {
   return (
-    <section id="timeline" className="py-24 sm:py-32 border-t border-[var(--line)]">
+    <section id="timeline" className="py-24 sm:py-32 border-t border-[var(--line)] bg-moss">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text text-balance">

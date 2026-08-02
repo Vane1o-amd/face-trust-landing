@@ -14,7 +14,7 @@ const QA = [
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-24 sm:py-32 border-t border-[var(--line)]">
+    <section id="faq" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <Reveal>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text">Частые вопросы</h2>

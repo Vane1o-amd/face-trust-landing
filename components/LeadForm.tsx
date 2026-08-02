@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Reveal } from "./Reveal";
 
 type Status = "idle" | "loading" | "ok" | "error";
@@ -45,8 +46,8 @@ export function LeadForm() {
   }
 
   return (
-    <section id="lead" className="py-24 sm:py-32 bg-[var(--bg-soft)] border-t border-[var(--line)] relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full opacity-30 blur-[120px]" style={{ background: "radial-gradient(closest-side, rgba(150,150,165,0.3), transparent 70%)" }} />
+    <section id="lead" className="py-24 sm:py-32 bg-moss border-t border-[var(--line)] relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full opacity-30 blur-[120px] blob-sand" />
       <div className="relative mx-auto max-w-2xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Заявка</p>
@@ -98,7 +99,10 @@ export function LeadForm() {
               </button>
               {error && <p className="text-[14px] text-red-400">{error}</p>}
               <p className="text-[12px] text-[var(--ink-soft)] text-center">
-                Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
+                Нажимая кнопку, вы соглашаетесь с{" "}
+                <Link href="/privacy" className="underline underline-offset-2 hover:text-[var(--ink)]">
+                  обработкой персональных данных
+                </Link>.
               </p>
             </form>
           </Reveal>

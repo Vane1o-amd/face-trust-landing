@@ -4,9 +4,18 @@
   --bg: #0a0a0a;
   --bg-soft: #111114;
   --bg-card: #161619;
-  --ink: #f5f5f5;
-  --ink-soft: #9a9a9f;
-  --line: #26262b;
+  --bg-sand: #151411;
+  --bg-moss: #0f130f;
+  --bg-stone: #121310;
+  --bg-earth-card: #1b1915;
+  --ink: #f5f5f0;
+  --ink-soft: #9b9a93;
+  --line: #2a2925;
+  --moss: #6b8c5a;
+  --moss-light: #8aa873;
+  --sand: #c4b8a3;
+  --bark: #8c7e6a;
+  --stone: #7d8075;
 }
 
 @theme inline {
@@ -16,11 +25,13 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
+  --color-moss: var(--moss);
+  --color-sand: var(--sand);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 * { border-color: var(--line); }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 body {
   background: var(--bg);
   color: var(--ink);
@@ -30,8 +41,24 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: #e8e8e8; color: #000; }
+::selection { background: #d6d0c2; color: #0a0a0a; }
 .tracking-tight-display { letter-spacing: -0.03em; }
+
+/* Earthy section backgrounds */
+.bg-sand { background: var(--bg-sand); }
+.bg-moss { background: var(--bg-moss); }
+.bg-stone { background: var(--bg-stone); }
+
+/* Organic blobs */
+.blob-moss { background: radial-gradient(closest-side, rgba(107,140,90,0.28), transparent 70%); }
+.blob-sand { background: radial-gradient(closest-side, rgba(196,184,163,0.18), transparent 70%); }
+.blob-stone { background: radial-gradient(closest-side, rgba(125,128,117,0.20), transparent 70%); }
+
+/* Nature accent utilities */
+.text-moss { color: var(--moss-light); }
+.text-sand { color: var(--sand); }
+.bg-moss-accent { background: rgba(107,140,90,0.15); }
+.border-moss { border-color: rgba(107,140,90,0.35); }
 
 /* chrome-text with safe fallback if background-clip:text unsupported */
 .chrome-text {

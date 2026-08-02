@@ -11,7 +11,7 @@ export function Scarcity() {
   const [left] = useState(LEFT);
   const pct = (left / TOTAL) * 100;
   return (
-    <section id="scarcity" className="py-24 sm:py-32 border-t border-[var(--line)]">
+    <section id="scarcity" className="py-24 sm:py-32 border-t border-[var(--line)] bg-sand">
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <Reveal>
           <div className="metallic-border rounded-3xl p-8 sm:p-12 text-center glow">

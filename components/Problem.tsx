@@ -9,11 +9,11 @@ const ITEMS = [
 
 export function Problem() {
   return (
-    <section id="problem" className="py-24 sm:py-32 border-t border-[var(--line)]">
+    <section id="problem" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Знакомо?</p>
-          <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display max-w-2xl chrome-text">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display max-w-2xl chrome-text text-balance">
             Почему лицо «не работает» на вас
           </h2>
         </Reveal>

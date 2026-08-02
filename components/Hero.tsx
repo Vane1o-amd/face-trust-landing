@@ -2,14 +2,15 @@ import { Reveal } from "./Reveal";
 
 export function Hero() {
   return (
-    <section id="top" className="pt-36 pb-20 sm:pt-44 sm:pb-28 relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full opacity-40 blur-[120px]" style={{ background: "radial-gradient(closest-side, rgba(150,150,165,0.35), transparent 70%)" }} />
+    <section id="top" className="pt-36 pb-20 sm:pt-44 sm:pb-28 relative overflow-hidden bg-moss">
+      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full opacity-40 blur-[120px] blob-moss" />
+      <div aria-hidden className="pointer-events-none absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full opacity-30 blur-[100px] blob-sand" />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
           <Reveal>
             <span className="inline-flex items-center gap-2 text-[13px] font-medium text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-3 py-1">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Набор открыт · 3 места в месяц
+              20% действий — 80% результата
             </span>
           </Reveal>
           <Reveal delay={0.05}>
