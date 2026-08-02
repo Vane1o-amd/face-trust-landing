@@ -1,8 +1,10 @@
 import { z } from "zod";
 
 const schema = z.object({
-  TELEGRAM_BOT_TOKEN: z.string().min(1, "TELEGRAM_BOT_TOKEN required"),
-  ARTUR_CHAT_ID: z.string().min(1, "ARTUR_CHAT_ID required"),
+  TELEGRAM_BOT_TOKEN: z
+    .string()
+    .regex(/^\d{6,}:[A-Za-z0-9_-]{35}$/, "TELEGRAM_BOT_TOKEN malformed"),
+  ARTUR_CHAT_ID: z.string().regex(/^-?\d+$/, "ARTUR_CHAT_ID malformed"),
   NEXT_PUBLIC_SITE_URL: z.string().url().default("https://example.com"),
 });
 

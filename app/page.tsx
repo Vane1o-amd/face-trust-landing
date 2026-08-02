@@ -5,7 +5,6 @@ import { Outcome } from "@/components/Outcome";
 import { ForWhom } from "@/components/ForWhom";
 import { Trust } from "@/components/Trust";
 import { Diagnostic } from "@/components/Diagnostic";
-import { Timeline } from "@/components/Timeline";
 import { ProgramContents } from "@/components/ProgramContents";
 import { Bonuses } from "@/components/Bonuses";
 import { Guarantee } from "@/components/Guarantee";
@@ -25,7 +24,6 @@ export default function Page() {
         <ForWhom />
         <Trust />
         <Diagnostic />
-        <Timeline />
         <ProgramContents />
         <Bonuses />
         <Guarantee />

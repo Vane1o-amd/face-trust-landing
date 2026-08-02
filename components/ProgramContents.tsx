@@ -1,37 +1,185 @@
+"use client";
+
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 
-const STEPS = [
-  { n: 1, weeks: "Неделя 1", t: "Диагностика и стратегия", d: "Проводим полный анализ лица, тела и образа жизни. Определяем главные причины, которые мешают вам выглядеть лучше, и составляем персональный план трансформации." },
-  { n: 2, weeks: "Недели 2–4", t: "Создание фундамента", d: "Постепенно внедряем питание, любимый спорт, сон, уход, БАДы и полезные привычки. Всё максимально просто, удобно и без лишних ограничений." },
-  { n: 3, weeks: "Недели 5–8", t: "Формирование выразительного лица", d: "Усиливаем результат: уменьшаем отёчность, снижаем процент жира, улучшаем кожу, волосы и детали внешности. Именно на этом этапе изменения становятся заметны окружающим." },
-  { n: 4, weeks: "Недели 9–11", t: "Закрепление и автоматизация", d: "Закрепляем результат, автоматизируем все привычки и создаём систему, которой легко придерживаться годами. Вы получаете персональный план поддержки и календарь ухода, чтобы сохранять внешний вид без постоянного самоконтроля." },
+type Detail = {
+  groups: { label: string | null; items: string[] }[];
+  closing: string;
+};
+
+type Step = {
+  n: number;
+  weeks: string;
+  t: string;
+  d: string;
+  detail: Detail;
+};
+
+const STEPS: Step[] = [
+  {
+    n: 1,
+    weeks: "Неделя 1",
+    t: "Диагностика и стратегия",
+    d: "Проводим полный анализ лица, тела и образа жизни. Определяем главные причины, которые мешают вам выглядеть лучше, и составляем персональный план трансформации.",
+    detail: {
+      groups: [
+        {
+          label: "Сначала мы проводим глубокий аудит:",
+          items: [
+            "причёска и состояние волос;",
+            "анализ лица и тела;",
+            "анализ образа жизни;",
+            "разбор рабочего графика;",
+            "анализ питания;",
+            "анализ сна;",
+            "анализ уровня активности;",
+            "выявление привычек и слабых мест;",
+            "определение точки А и желаемого результата.",
+          ],
+        },
+      ],
+      closing: "На основе аудита строим персональный план трансформации под ваш график и цели.",
+    },
+  },
+  {
+    n: 2,
+    weeks: "Недели 2–4",
+    t: "Создание фундамента",
+    d: "Постепенно внедряем систему в вашу жизнь — максимально просто, удобно и без лишних ограничений.",
+    detail: {
+      groups: [
+        {
+          label: "Внедряем простой, но эффективный уход за лицом и строим систему под вашу жизнь:",
+          items: [
+            "простой, но эффективный уход за лицом;",
+            "БАДы под ваш стиль жизни и темп;",
+            "режим сна исходя из вашего графика;",
+            "система, которая требует минимум времени и усиливает вашу концентрацию и фокус на ваших проектах;",
+            "питание без жёстких ограничений — можно питаться ресторанной едой и не готовить всегда.",
+          ],
+        },
+      ],
+      closing: "Цель — не создать фундамент, а подкорректировать тот, что уже есть. Видимые для окружающих изменения появляются уже на 4 неделе: не клиент замечает, что он поменялся, а окружающие.",
+    },
+  },
+  {
+    n: 3,
+    weeks: "Недели 5–8",
+    t: "Формирование выразительного лица",
+    d: "Усиливаем результат: уменьшаем отёчность, снижаем процент жира, улучшаем кожу, волосы и детали внешности.",
+    detail: {
+      groups: [
+        {
+          label: null,
+          items: [
+            "уменьшаем отёчность;",
+            "делаем лицо более выразительным;",
+            "улучшаем качество кожи;",
+            "работаем над процентом жира;",
+            "усиливаем контуры лица;",
+            "корректируем детали, которые дают максимальный визуальный эффект;",
+            "продолжаем адаптировать систему под ваш образ жизни.",
+          ],
+        },
+      ],
+      closing: "Здесь мы усиливаем контуры и детали, которые и формируют «дорогое» лицо.",
+    },
+  },
+  {
+    n: 4,
+    weeks: "Недели 9–11",
+    t: "Закрепление и автоматизация",
+    d: "Закрепляем результат, автоматизируем все привычки и создаём систему, которой легко придерживаться годами.",
+    detail: {
+      groups: [
+        {
+          label: null,
+          items: [
+            "закрепляем все привычки;",
+            "автоматизируем питание, уход и тренировки;",
+            "составляем долгосрочный план поддержки;",
+            "устраняем последние слабые места;",
+            "формируем систему, которой легко придерживаться даже при высокой занятости и частых путешествиях.",
+          ],
+        },
+      ],
+      closing: "К концу программы вы получаете не временный результат, а систему, которую сможете поддерживать годами без ощущения, что живёте «по программе».",
+    },
+  },
 ];
 
 export function ProgramContents() {
+  const [active, setActive] = useState(0);
+  const step = STEPS[active];
+
   return (
     <section id="program" className="py-24 sm:py-32 bg-[var(--bg-soft)] border-t border-[var(--line)] relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute -top-24 right-0 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] blob-stone" />
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 relative">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Ваш путь за 11 недель</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text text-balance">
             Программа «Лицо, которому доверяют»
           </h2>
         </Reveal>
-        <div className="mt-12 grid sm:grid-cols-2 gap-4">
-          {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={(i % 2) * 0.05}>
-              <div className="metallic-border h-full rounded-2xl p-7 flex flex-col gap-3">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-[12px] font-mono text-[var(--ink-soft)] whitespace-nowrap">0{s.n}/4</span>
-                  <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-2.5 py-1">{s.weeks}</span>
-                </div>
-                <h3 className="text-[18px] font-semibold tracking-tight">{s.t}</h3>
-                <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{s.d}</p>
-              </div>
-            </Reveal>
-          ))}
+
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {STEPS.map((s, i) => {
+            const isActive = i === active;
+            return (
+              <Reveal key={s.n} delay={(i % 4) * 0.05}>
+                <button
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-pressed={isActive}
+                  className={`metallic-border h-full rounded-2xl p-6 flex flex-col gap-3 text-left transition-colors w-full ${
+                    isActive ? "ring-2 ring-white/40 bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-[12px] font-mono text-[var(--ink-soft)] whitespace-nowrap">0{s.n}/4</span>
+                    <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-2.5 py-1">{s.weeks}</span>
+                  </div>
+                  <h3 className="text-[17px] font-semibold tracking-tight">{s.t}</h3>
+                  <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{s.d}</p>
+                  <span className="mt-auto pt-2 text-[13px] font-medium text-emerald-400">
+                    {isActive ? "Открыто ↓" : "Подробнее →"}
+                  </span>
+                </button>
+              </Reveal>
+            );
+          })}
         </div>
+
+        <Reveal key={active} delay={0.02}>
+          <div className="mt-6 metallic-border rounded-2xl p-7 sm:p-9">
+            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span className="text-[13px] font-mono text-[var(--ink-soft)]">Этап 0{step.n}/4</span>
+              <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-2.5 py-1">{step.weeks}</span>
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight chrome-text">{step.t}</h3>
+            <p className="mt-4 text-[16px] leading-relaxed text-[var(--ink-soft)] max-w-2xl">{step.d}</p>
+            {step.detail.groups.map((g, gi) => (
+              <div key={gi} className="mt-5">
+                {g.label && <p className="text-[15px] font-medium text-[var(--ink)]">{g.label}</p>}
+                <ul className="mt-2 grid sm:grid-cols-2 gap-x-8 gap-y-2">
+                  {g.items.map((it, ii) => (
+                    <li key={ii} className="flex gap-2.5 text-[14px] leading-relaxed text-[var(--ink-soft)]">
+                      <span aria-hidden className="text-emerald-400 mt-0.5">—</span>
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <p className="mt-6 text-[15px] leading-relaxed text-[var(--ink)] italic max-w-2xl">{step.detail.closing}</p>
+          </div>
+        </Reveal>
+
+        <p className="mt-6 text-[14px] text-[var(--ink-soft)]">
+          11 недель — путь к лицу, которому доверяют. Нажмите на любой этап выше, чтобы увидеть, что именно происходит на этой стадии.
+        </p>
       </div>
     </section>
   );

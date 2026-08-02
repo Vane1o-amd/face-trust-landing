@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { Reveal } from "./Reveal";
 
@@ -9,28 +9,63 @@ type Status = "idle" | "loading" | "ok" | "error";
 export function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
+  const [front, setFront] = useState<File | null>(null);
+  const [side, setSide] = useState<File | null>(null);
+  const [consent, setConsent] = useState(false);
   const [form, setForm] = useState({
     name: "",
-    age: "",
     telegram: "",
     instagram: "",
     complaint: "",
     website: "",
   });
 
+  const frontRef = useRef<HTMLInputElement>(null);
+  const sideRef = useRef<HTMLInputElement>(null);
+
   const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  function pickPhoto(which: "front" | "side", e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    if (f) {
+      if (f.size > 12 * 1024 * 1024) {
+        setError("Фото слишком большое (макс. 12 МБ)");
+        e.target.value = "";
+        return;
+      }
+      if (!/^image\/(jpe?g|png|webp)$/i.test(f.type)) {
+        setError("Разрешены только JPG, PNG, WEBP");
+        e.target.value = "";
+        return;
+      }
+      setError("");
+    }
+    if (which === "front") setFront(f);
+    else setSide(f);
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const hasPhotos = Boolean(front || side);
+    // GDPR Art. 9: biometric data needs explicit consent before transfer.
+    if (hasPhotos && !consent) {
+      setError("Подтвердите согласие на обработку фото");
+      return;
+    }
     setStatus("loading");
     setError("");
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const fd = new FormData();
+      fd.append("name", form.name);
+      fd.append("telegram", form.telegram);
+      fd.append("instagram", form.instagram);
+      fd.append("complaint", form.complaint);
+      fd.append("website", form.website);
+      if (front) fd.append("front", front);
+      if (side) fd.append("side", side);
+
+      const res = await fetch("/api/lead", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setError(data?.error ?? "Не удалось отправить. Попробуйте ещё раз.");
@@ -38,7 +73,12 @@ export function LeadForm() {
         return;
       }
       setStatus("ok");
-      setForm({ name: "", age: "", telegram: "", instagram: "", complaint: "", website: "" });
+      setForm({ name: "", telegram: "", instagram: "", complaint: "", website: "" });
+      setFront(null);
+      setSide(null);
+      setConsent(false);
+      if (frontRef.current) frontRef.current.value = "";
+      if (sideRef.current) sideRef.current.value = "";
     } catch {
       setError("Сеть недоступна. Попробуйте ещё раз.");
       setStatus("error");
@@ -51,11 +91,11 @@ export function LeadForm() {
       <div className="relative mx-auto max-w-2xl px-5 sm:px-8">
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Заявка</p>
-          <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight chrome-text">
             Бесплатная диагностика лица
           </h2>
           <p className="mt-5 text-[16px] leading-relaxed text-[var(--ink-soft)]">
-            Оставьте контакт и расскажите, чем недовольны во внешности. Свяжусь с вами
+            Оставьте контакт и приложите фото лица (спереди и сбоку). Свяжусь с вами
             лично в течение дня и предложу план.
           </p>
         </Reveal>
@@ -74,22 +114,40 @@ export function LeadForm() {
               <Field label="Имя" required>
                 <input value={form.name} onChange={update("name")} required maxLength={80} className={inputCls} placeholder="Как к вам обращаться" />
               </Field>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Возраст" required>
-                  <input value={form.age} onChange={update("age")} required maxLength={3} inputMode="numeric" className={inputCls} placeholder="35" />
-                </Field>
-                <Field label="Telegram" required>
-                  <input value={form.telegram} onChange={update("telegram")} required maxLength={80} className={inputCls} placeholder="@username" />
-                </Field>
-              </div>
+              <Field label="Telegram" required>
+                <input value={form.telegram} onChange={update("telegram")} required maxLength={80} className={inputCls} placeholder="@username" />
+              </Field>
               <Field label="Instagram (необязательно)">
                 <input value={form.instagram} onChange={update("instagram")} maxLength={80} className={inputCls} placeholder="@username" />
               </Field>
               <Field label="Чем вы недовольны в своей внешности?" required>
                 <textarea value={form.complaint} onChange={update("complaint")} required minLength={5} maxLength={2000} rows={4} className={`${inputCls} resize-none`} placeholder="Опишите своими словами" />
               </Field>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <PhotoField label="Фото лица спереди" file={front} onPick={(e) => pickPhoto("front", e)} inputRef={frontRef} />
+                <PhotoField label="Фото лица сбоку" file={side} onPick={(e) => pickPhoto("side", e)} inputRef={sideRef} />
+              </div>
+
               {/* Honeypot — visually hidden but present in DOM so bots fill it */}
               <input value={form.website} onChange={update("website")} tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" className="opacity-0 absolute -z-10 h-0 w-0" />
+
+              <label className="flex items-start gap-3 text-[13px] leading-relaxed text-[var(--ink-soft)] cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-500"
+                />
+                <span>
+                  Согласен на обработку биометрических данных (фото лица), их
+                  передачу в Telegram и хранение до 30 дней после ответа. См.{" "}
+                  <Link href="/privacy" className="underline underline-offset-2 hover:text-[var(--ink)]">
+                    политику конфиденциальности
+                  </Link>.
+                </span>
+              </label>
+
               <button
                 type="submit"
                 disabled={status === "loading"}
@@ -98,12 +156,6 @@ export function LeadForm() {
                 {status === "loading" ? "Отправка…" : "Отправить заявку"}
               </button>
               {error && <p className="text-[14px] text-red-400">{error}</p>}
-              <p className="text-[12px] text-[var(--ink-soft)] text-center">
-                Нажимая кнопку, вы соглашаетесь с{" "}
-                <Link href="/privacy" className="underline underline-offset-2 hover:text-[var(--ink)]">
-                  обработкой персональных данных
-                </Link>.
-              </p>
             </form>
           </Reveal>
         )}
@@ -120,6 +172,34 @@ function Field({ label, required, children }: { label: string; required?: boolea
     <label className="flex flex-col gap-1.5">
       <span className="text-[13px] font-medium text-[var(--ink)]">{label}{required && <span className="text-[var(--ink-soft)]"> *</span>}</span>
       {children}
+    </label>
+  );
+}
+
+function PhotoField({
+  label,
+  file,
+  onPick,
+  inputRef,
+}: {
+  label: string;
+  file: File | null;
+  onPick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+}) {
+  return (
+    <label className="flex flex-col gap-1.5 cursor-pointer">
+      <span className="text-[13px] font-medium text-[var(--ink)]">{label}</span>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        onChange={onPick}
+        className="hidden"
+      />
+      <span className="rounded-xl border border-dashed border-[var(--line)] bg-black/40 px-4 py-3 text-[14px] text-[var(--ink-soft)] truncate transition-colors hover:border-[rgba(200,200,210,0.6)]">
+        {file ? file.name : "Нажмите, чтобы выбрать фото"}
+      </span>
     </label>
   );
 }
