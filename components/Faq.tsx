@@ -12,7 +12,7 @@ const QA = [
 ];
 
 export function Faq() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="faq" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
