@@ -102,7 +102,7 @@ export function LeadForm() {
         {status === "ok" ? (
           <Reveal delay={0.05}>
             <div className="mt-10 metallic-border rounded-2xl p-10 text-center glow">
-              <div className="mx-auto h-12 w-12 rounded-full bg-emerald-500/15 flex items-center justify-center text-2xl text-emerald-400">✓</div>
+              <div className="mx-auto h-12 w-12 rounded-full bg-emerald-700/15 flex items-center justify-center text-2xl text-emerald-700">✓</div>
               <h3 className="mt-5 text-xl font-semibold tracking-tight">Заявка отправлена</h3>
               <p className="mt-2 text-[15px] text-[var(--ink-soft)]">Свяжусь с вами в Telegram в ближайшее время.</p>
             </div>
@@ -136,7 +136,7 @@ export function LeadForm() {
                   type="checkbox"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-500"
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-700"
                 />
                 <span>
                   Согласен на обработку биометрических данных (фото лица), их
@@ -154,7 +154,7 @@ export function LeadForm() {
               >
                 {status === "loading" ? "Отправка…" : "Отправить заявку"}
               </button>
-              {error && <p className="text-[14px] text-red-400">{error}</p>}
+              {error && <p className="text-[14px] text-red-700">{error}</p>}
             </form>
           </Reveal>
         )}
@@ -164,7 +164,7 @@ export function LeadForm() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-[var(--line)] bg-black/40 px-4 py-3 text-[15px] text-[var(--ink)] outline-none transition-colors focus:border-[rgba(200,200,210,0.6)] focus:ring-2 focus:ring-white/30 placeholder:text-[var(--ink-soft)]/60";
+  "w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-[15px] text-[var(--ink)] outline-none transition-colors focus:border-[var(--ink)] focus:ring-2 focus:ring-[var(--ink)]/15 placeholder:text-[var(--ink-soft)]/60";
 
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
@@ -196,7 +196,7 @@ function PhotoField({
         onChange={onPick}
         className="hidden"
       />
-      <span className="rounded-xl border border-dashed border-[var(--line)] bg-black/40 px-4 py-3 text-[14px] text-[var(--ink-soft)] truncate transition-colors hover:border-[rgba(200,200,210,0.6)]">
+      <span className="rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 text-[14px] text-[var(--ink-soft)] truncate transition-colors hover:border-[var(--ink)]">
         {file ? file.name : "Нажмите, чтобы выбрать фото"}
       </span>
     </label>

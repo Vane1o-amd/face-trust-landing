@@ -29,11 +29,11 @@ export function Scarcity() {
                 <span className="chrome-text font-semibold">{TAKEN} из {TOTAL}</span>
               </div>
               <div className="mt-2 h-2 rounded-full bg-[var(--line)] overflow-hidden">
-                <div className={`h-full rounded-full transition-all ${closed ? "bg-[var(--ink-soft)]/60" : "bg-emerald-400/80"}`} style={{ width: `${closed ? 100 : pct}%` }} />
+                <div className={`h-full rounded-full transition-all ${closed ? "bg-[var(--ink-soft)]/60" : "bg-emerald-700/80"}`} style={{ width: `${closed ? 100 : pct}%` }} />
               </div>
             </div>
             {closed ? (
-              <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white/[0.02] px-6 py-3.5 text-[15px] font-medium text-[var(--ink-soft)]">
+              <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-black/[0.02] px-6 py-3.5 text-[15px] font-medium text-[var(--ink-soft)]">
                 <span aria-hidden className="h-2 w-2 rounded-full bg-red-400/80" />
                 Запись закрыта — в лист ожидания
               </div>

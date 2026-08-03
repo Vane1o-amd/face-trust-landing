@@ -64,12 +64,11 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
     caption: i === 0 ? `📷 Фото заявки — ${name}` : undefined,
   }));
 
+  // Telegram sendMediaGroup expects `media` as a JSON *string* field, not a
+  // file. Appending a Blob made Telegram treat it as a file part named
+  // "media.json", so the media group parsed empty and photos never posted.
   const body = new FormData();
-  body.append(
-    "media",
-    new Blob([JSON.stringify(media)], { type: "application/json" }),
-    "media.json"
-  );
+  body.append("media", JSON.stringify(media));
   photos.forEach((p, i) => {
     const safeName = (p.name || `photo${i}.jpg`).replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 64);
     body.append(`photo${i}`, p, safeName);

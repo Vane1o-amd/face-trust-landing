@@ -28,7 +28,7 @@ export function Trust() {
           <ul className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
             {POINTS.map((p, i) => (
               <li key={i} className="flex gap-2.5 text-[16px] leading-relaxed text-[var(--ink)]">
-                <span aria-hidden className="text-emerald-400 mt-0.5">—</span>
+                <span aria-hidden className="text-emerald-700 mt-0.5">—</span>
                 <span>{p}</span>
               </li>
             ))}

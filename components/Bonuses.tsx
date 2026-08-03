@@ -26,7 +26,7 @@ export function Bonuses() {
               <div className="metallic-border h-full rounded-2xl p-7 flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-[12px] font-mono text-[var(--ink-soft)] whitespace-nowrap">+ бонус 0{i + 1}</span>
-                  <span className="text-[13px] font-semibold text-emerald-400 whitespace-nowrap">{b.price}</span>
+                  <span className="text-[13px] font-semibold text-amber whitespace-nowrap">{b.price}</span>
                 </div>
                 <h3 className="text-[17px] font-semibold tracking-tight">{b.t}</h3>
                 <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{b.d}</p>

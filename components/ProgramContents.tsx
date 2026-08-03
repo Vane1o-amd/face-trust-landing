@@ -133,16 +133,16 @@ export function ProgramContents() {
                   onClick={() => setActive(i)}
                   aria-pressed={isActive}
                   className={`metallic-border h-full rounded-2xl p-6 flex flex-col gap-3 text-left transition-colors w-full ${
-                    isActive ? "ring-2 ring-white/40 bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                    isActive ? "ring-2 ring-[var(--ink)]/25 bg-black/[0.04]" : "hover:bg-black/[0.02]"
                   }`}
                 >
                   <div className="flex items-baseline gap-3">
                     <span className="text-[12px] font-mono text-[var(--ink-soft)] whitespace-nowrap">0{s.n}/4</span>
-                    <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-2.5 py-1">{s.weeks}</span>
+                    <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-black/[0.02] px-2.5 py-1">{s.weeks}</span>
                   </div>
                   <h3 className="text-[17px] font-semibold tracking-tight">{s.t}</h3>
                   <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{s.d}</p>
-                  <span className="mt-auto pt-2 text-[13px] font-medium text-emerald-400">
+                  <span className="mt-auto pt-2 text-[13px] font-medium text-emerald-700">
                     {isActive ? "Открыто ↓" : "Подробнее →"}
                   </span>
                 </button>
@@ -155,7 +155,7 @@ export function ProgramContents() {
           <div className="mt-6 metallic-border rounded-2xl p-7 sm:p-9">
             <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
               <span className="text-[13px] font-mono text-[var(--ink-soft)]">Этап 0{step.n}/4</span>
-              <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-white/[0.02] px-2.5 py-1">{step.weeks}</span>
+              <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-black/[0.02] px-2.5 py-1">{step.weeks}</span>
             </div>
             <h3 className="mt-3 text-2xl font-semibold tracking-tight chrome-text">{step.t}</h3>
             <p className="mt-4 text-[16px] leading-relaxed text-[var(--ink-soft)] max-w-2xl">{step.d}</p>
@@ -165,7 +165,7 @@ export function ProgramContents() {
                 <ul className="mt-2 grid sm:grid-cols-2 gap-x-8 gap-y-2">
                   {g.items.map((it, ii) => (
                     <li key={ii} className="flex gap-2.5 text-[14px] leading-relaxed text-[var(--ink-soft)]">
-                      <span aria-hidden className="text-emerald-400 mt-0.5">—</span>
+                      <span aria-hidden className="text-emerald-700 mt-0.5">—</span>
                       <span>{it}</span>
                     </li>
                   ))}
