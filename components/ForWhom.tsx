@@ -24,7 +24,7 @@ export function ForWhom() {
           {ITEMS.map((it, i) => (
             <Reveal key={it} delay={(i % 3) * 0.05}>
               <div className="metallic-border rounded-2xl h-full p-6 flex items-center gap-3">
-                <span aria-hidden className="text-sky-700 text-lg leading-none">●</span>
+                <span aria-hidden className="text-turquoise text-lg leading-none">●</span>
                 <span className="text-[15px] font-medium tracking-tight">{it}</span>
               </div>
             </Reveal>
