@@ -164,7 +164,7 @@ export function LeadForm() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-[15px] text-[var(--ink)] outline-none transition-colors focus:border-[var(--ink)] focus:ring-2 focus:ring-[var(--ink)]/15 placeholder:text-[var(--ink-soft)]/60";
+  "w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-[15px] text-slate-900 outline-none transition-colors focus:border-[var(--ink)] focus:ring-2 focus:ring-[var(--ink)]/15 placeholder:text-slate-500";
 
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
@@ -196,7 +196,7 @@ function PhotoField({
         onChange={onPick}
         className="hidden"
       />
-      <span className="rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 text-[14px] text-[var(--ink-soft)] truncate transition-colors hover:border-[var(--ink)]">
+      <span className="rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 text-[14px] text-slate-600 truncate transition-colors hover:border-slate-900">
         {file ? file.name : "Tap to choose a photo"}
       </span>
     </label>
