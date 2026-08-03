@@ -2,23 +2,23 @@
 
 :root {
   --bg: #FFFFFF;
-  --bg-soft: #F7F8F5;
+  --bg-soft: #F7FAFD;
   --bg-card: #FFFFFF;
-  --bg-sand: #F5F2EC;
-  --bg-moss: #EFF3EC;
-  --bg-stone: #F5F3EF;
-  --bg-earth-card: #FAF8F4;
-  --ink: #1F2A1B;
-  --ink-soft: #5A6552;
-  --line: #E2E5DE;
-  --moss: #4A6B3C;
-  --moss-light: #6B8A57;
-  --moss-deep: #3A5530;
-  --amber: #A87642;
-  --amber-light: #C89058;
-  --sand: #8E9783;
-  --bark: #6B7565;
-  --stone: #7A8074;
+  --bg-sand: #EEF4FC;
+  --bg-moss: #E8F1FB;
+  --bg-stone: #F2F7FD;
+  --bg-earth-card: #F8FBFE;
+  --ink: #0F172A;
+  --ink-soft: #5B6B7E;
+  --line: #E2E8F0;
+  --moss: #2A8CDB;
+  --moss-light: #7DD3FC;
+  --moss-deep: #1E5FA8;
+  --amber: #B07A3E;
+  --amber-light: #D49A5E;
+  --sand: #8AA0B5;
+  --bark: #6B7C8A;
+  --stone: #8492A2;
   --font-serif: ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype", serif;
 }
 
@@ -57,10 +57,10 @@ body {
 .text-moss { color: var(--moss); }
 .text-sand { color: var(--sand); }
 .text-amber { color: var(--amber); }
-.bg-moss-accent { background: rgba(122,154,104,0.14); }
-.bg-amber-accent { background: rgba(184,144,88,0.14); }
-.border-moss { border-color: rgba(122,154,104,0.4); }
-.border-amber { border-color: rgba(184,144,88,0.4); }
+.bg-moss-accent { background: rgba(42,140,219,0.12); }
+.bg-amber-accent { background: rgba(176,122,62,0.12); }
+.border-moss { border-color: rgba(42,140,219,0.4); }
+.border-amber { border-color: rgba(176,122,62,0.4); }
 
 /* Heading — solid ink, editorial serif (de-AI, Primal Editorial) */
 .chrome-text {
@@ -79,7 +79,7 @@ body {
 .chrome-btn {
   background: var(--ink);
   color: #FFFFFF;
-  box-shadow: 0 8px 24px -12px rgba(31,42,27,0.25);
+  box-shadow: 0 8px 24px -12px rgba(15,23,42,0.25);
 }
 .chrome-btn:hover { filter: brightness(1.08); }
 
@@ -91,16 +91,16 @@ body {
 }
 .ghost-btn:hover {
   border-color: var(--ink);
-  background: rgba(31,42,27,0.04);
+  background: rgba(15,23,42,0.04);
 }
 
 .glow {
-  box-shadow: 0 0 0 1px rgba(31,42,27,0.06), 0 30px 80px -40px rgba(0,0,0,0.12);
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.06), 0 30px 80px -40px rgba(0,0,0,0.12);
 }
 
 /* Visible focus for a11y */
 :focus-visible {
-  outline: 2px solid rgba(74,107,60,0.6);
+  outline: 2px solid rgba(42,140,219,0.6);
   outline-offset: 2px;
 }
 

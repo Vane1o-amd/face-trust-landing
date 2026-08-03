@@ -102,7 +102,7 @@ export function LeadForm() {
         {status === "ok" ? (
           <Reveal delay={0.05}>
             <div className="mt-10 metallic-border rounded-2xl p-10 text-center glow">
-              <div className="mx-auto h-12 w-12 rounded-full bg-emerald-700/15 flex items-center justify-center text-2xl text-emerald-700">✓</div>
+              <div className="mx-auto h-12 w-12 rounded-full bg-sky-700/15 flex items-center justify-center text-2xl text-sky-700">✓</div>
               <h3 className="mt-5 text-xl font-semibold tracking-tight">Application sent</h3>
               <p className="mt-2 text-[15px] text-[var(--ink-soft)]">I'll contact you on Telegram shortly.</p>
             </div>
@@ -136,7 +136,7 @@ export function LeadForm() {
                   type="checkbox"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-700"
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-sky-700"
                 />
                 <span>
                   I consent to the processing of biometric data (face photos), their

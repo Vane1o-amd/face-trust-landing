@@ -18,7 +18,7 @@ export function Hero() {
               <ul className="space-y-2 text-[15px] text-[var(--ink)]">
                 {["20% of effort — 80% of results", "Personal guidance", "Result guaranteed"].map((t) => (
                   <li key={t} className="flex items-center gap-2.5">
-                    <span aria-hidden className="text-emerald-700">✔</span>
+                    <span aria-hidden className="text-sky-700">✔</span>
                     <span>{t}</span>
                   </li>
                 ))}

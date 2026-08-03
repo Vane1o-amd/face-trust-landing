@@ -29,7 +29,7 @@ export function Scarcity() {
                 <span className="chrome-text font-semibold">{TAKEN} of {TOTAL}</span>
               </div>
               <div className="mt-2 h-2 rounded-full bg-[var(--line)] overflow-hidden">
-                <div className={`h-full rounded-full transition-all ${closed ? "bg-[var(--ink-soft)]/60" : "bg-emerald-700/80"}`} style={{ width: `${closed ? 100 : pct}%` }} />
+                <div className={`h-full rounded-full transition-all ${closed ? "bg-[var(--ink-soft)]/60" : "bg-sky-600/80"}`} style={{ width: `${closed ? 100 : pct}%` }} />
               </div>
             </div>
             {closed ? (

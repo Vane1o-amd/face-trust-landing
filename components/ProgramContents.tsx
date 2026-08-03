@@ -142,7 +142,7 @@ export function ProgramContents() {
                   </div>
                   <h3 className="text-[17px] font-semibold tracking-tight">{s.t}</h3>
                   <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{s.d}</p>
-                  <span className="mt-auto pt-2 text-[13px] font-medium text-emerald-700">
+                  <span className="mt-auto pt-2 text-[13px] font-medium text-sky-700">
                     {isActive ? "Open ↓" : "More →"}
                   </span>
                 </button>
@@ -165,7 +165,7 @@ export function ProgramContents() {
                 <ul className="mt-2 grid sm:grid-cols-2 gap-x-8 gap-y-2">
                   {g.items.map((it, ii) => (
                     <li key={ii} className="flex gap-2.5 text-[14px] leading-relaxed text-[var(--ink-soft)]">
-                      <span aria-hidden className="text-emerald-700 mt-0.5">—</span>
+                      <span aria-hidden className="text-sky-700 mt-0.5">—</span>
                       <span>{it}</span>
                     </li>
                   ))}
