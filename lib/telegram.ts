@@ -13,15 +13,15 @@ export async function sendLeadToTelegram(lead: Lead): Promise<void> {
   // Plain text mode — no HTML parse_mode, so user input is treated literally.
   // No injection vector regardless of field content.
   const lines = [
-    "🔔 Новая заявка на диагностику",
+    "🔔 New diagnosis application",
     "",
-    `👤 Имя: ${lead.name}`,
+    `👤 Name: ${lead.name}`,
     `💬 Telegram: ${lead.telegram}`,
     lead.instagram ? `📸 Instagram: ${lead.instagram}` : null,
     "",
-    "❓ Чем недоволен:",
+    "❓ What they're unhappy about:",
     lead.complaint,
-    lead.hasPhotos ? "📷 Фото лица приложены отдельным сообщением" : null,
+    lead.hasPhotos ? "📷 Face photos attached in a separate message" : null,
   ];
   const text = lines.filter((l): l is string => l !== null).join("\n");
 
@@ -61,7 +61,7 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
   const media = photos.map((_, i) => ({
     type: "photo" as const,
     media: `attach://photo${i}`,
-    caption: i === 0 ? `📷 Фото заявки — ${name}` : undefined,
+    caption: i === 0 ? `📷 Application photo — ${name}` : undefined,
   }));
 
   // Telegram sendMediaGroup expects `media` as a JSON *string* field, not a

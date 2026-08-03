@@ -1,12 +1,12 @@
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
-  { t: "Просыпаетесь уже включённым", d: "Без тяжести в теле и тумана в голове. 10 минут — и у вас мощный заряд до самого вечера." },
-  { t: "Ощущение превосходства", d: "Когда вы смотрите в зеркало или на своё фото с видеовстречи. Взгляд, с которым заходят в кабинет владельцы бизнеса." },
-  { t: "Полная свобода от быта", d: "Вы всегда идеально сыты, едите еду ресторанного уровня в любой точке мира, не потратив на это ни минуты личного времени." },
-  { t: "Абсолютная чистота и здоровье изнутри", d: "Ваша кожа и тело работают на 100% без «костылей» и лишней фармакологии." },
-  { t: "Азарт и кайф от движения", d: "Вместо дисциплинарной каторги. Вы занимаетесь тем, что любите, а тело само становится сухим и атлетичным." },
-  { t: "Спокойствие за свой результат", d: "Вся система работает как швейцарские часы на автопилоте, освобождая вашу голову для масштабных задач." },
+  { t: "You wake up switched on", d: "No heaviness in the body, no fog in the head. 10 minutes — and you have a powerful charge until evening." },
+  { t: "A sense of superiority", d: "When you look in the mirror or at your photo from a video call. The look business owners walk into a room with." },
+  { t: "Total freedom from routine", d: "You're always perfectly fed, eating restaurant-grade food anywhere in the world, without spending a minute of personal time on it." },
+  { t: "Absolute clarity and health from within", d: "Your skin and body work at 100% without crutches and excess pharmacology." },
+  { t: "Drive and joy in movement", d: "Instead of disciplinary drudgery. You do what you love, and your body gets lean and athletic on its own." },
+  { t: "Peace of mind about your results", d: "The whole system works like a Swiss watch on autopilot, freeing your head for bigger tasks." },
 ];
 
 export function Outcome() {
@@ -14,9 +14,9 @@ export function Outcome() {
     <section id="outcome" className="py-24 sm:py-32 border-t border-[var(--line)] bg-moss relative overflow-hidden">
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Что вы получаете</p>
+          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">What you get</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display max-w-2xl chrome-text text-balance">
-            Главный результат программы — не просто «красивое лицо»
+            The real result of the program isn't just a pretty face
           </h2>
         </Reveal>
         <div className="mt-12 grid sm:grid-cols-2 gap-4">

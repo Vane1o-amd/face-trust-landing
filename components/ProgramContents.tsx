@@ -19,92 +19,92 @@ type Step = {
 const STEPS: Step[] = [
   {
     n: 1,
-    weeks: "Неделя 1",
-    t: "Диагностика и стратегия",
-    d: "Проводим полный анализ лица, тела и образа жизни. Определяем главные причины, которые мешают вам выглядеть лучше, и составляем персональный план трансформации.",
+    weeks: "Week 1",
+    t: "Diagnostics and strategy",
+    d: "A full analysis of your face, body and lifestyle. We identify the main reasons holding your looks back and build a personal transformation plan.",
     detail: {
       groups: [
         {
-          label: "Сначала мы проводим глубокий аудит:",
+          label: "First we run a deep audit:",
           items: [
-            "причёска и состояние волос;",
-            "анализ лица и тела;",
-            "анализ образа жизни;",
-            "разбор рабочего графика;",
-            "анализ питания;",
-            "анализ сна;",
-            "анализ уровня активности;",
-            "выявление привычек и слабых мест;",
-            "определение точки А и желаемого результата.",
+            "hairstyle and hair condition;",
+            "face and body analysis;",
+            "lifestyle analysis;",
+            "work schedule review;",
+            "nutrition analysis;",
+            "sleep analysis;",
+            "activity level analysis;",
+            "identifying habits and weak spots;",
+            "defining your starting point and desired result.",
           ],
         },
       ],
-      closing: "На основе аудита строим персональный план трансформации под ваш график и цели.",
+      closing: "Based on the audit we build a personal transformation plan around your schedule and goals.",
     },
   },
   {
     n: 2,
-    weeks: "Недели 2–4",
-    t: "Создание фундамента",
-    d: "Постепенно встраиваем простую систему в вашу жизнь — без жёстких ограничений и лишних усилий.",
+    weeks: "Weeks 2–4",
+    t: "Building the foundation",
+    d: "We gradually embed a simple system into your life — without strict restrictions or extra effort.",
     detail: {
       groups: [
         {
           label: null,
           items: [
-            "уход за лицом — простой и достаточно эффективный;",
-            "БАДы под ваш ритм и стиль жизни;",
-            "режим сна, привязанный к вашему графику;",
-            "система, которая занимает минимум времени и не отвлекает от дел;",
-            "питание без жёстких ограничений — можно есть в ресторане и не готовить каждый день.",
+            "skincare — simple and effective enough;",
+            "supplements matched to your rhythm and lifestyle;",
+            "a sleep schedule tied to your calendar;",
+            "a system that takes minimal time and doesn't distract from your work;",
+            "eating without strict limits — you can eat out and not cook every day.",
           ],
         },
       ],
-      closing: "Мы корректируем уже существующий фундамент. К 4-й неделе окружающие видят значительные изменения: вы узнаёте результат по их реакции раньше, чем по зеркалу.",
+      closing: "We adjust the foundation that's already there. By week 4 people around you see significant change: you'll read the result in their reaction before the mirror.",
     },
   },
   {
     n: 3,
-    weeks: "Недели 5–8",
-    t: "Формирование выразительного лица",
-    d: "Усиливаем результат: уменьшаем отёчность, снижаем процент жира, улучшаем кожу, волосы и детали внешности.",
+    weeks: "Weeks 5–8",
+    t: "Sculpting an expressive face",
+    d: "We amplify the result: reduce puffiness, lower body fat, improve skin, hair and the details of your appearance.",
     detail: {
       groups: [
         {
           label: null,
           items: [
-            "уменьшаем отёчность;",
-            "делаем лицо более выразительным;",
-            "улучшаем качество кожи;",
-            "работаем над процентом жира;",
-            "усиливаем контуры лица;",
-            "корректируем детали, которые дают максимальный визуальный эффект;",
-            "продолжаем адаптировать систему под ваш образ жизни.",
+            "reduce puffiness;",
+            "make the face more expressive;",
+            "improve skin quality;",
+            "work on body fat percentage;",
+            "sharpen facial contours;",
+            "correct the details that give the biggest visual effect;",
+            "keep adapting the system to your lifestyle.",
           ],
         },
       ],
-      closing: "Здесь мы усиливаем контуры и детали, которые и формируют «дорогое» лицо.",
+      closing: "Here we sharpen the contours and details that form an \"expensive\" face.",
     },
   },
   {
     n: 4,
-    weeks: "Недели 9–11",
-    t: "Закрепление и автоматизация",
-    d: "Закрепляем результат, автоматизируем все привычки и создаём систему, которой легко придерживаться годами.",
+    weeks: "Weeks 9–11",
+    t: "Lock-in and automation",
+    d: "We lock in the result, automate every habit and build a system you can maintain for years.",
     detail: {
       groups: [
         {
           label: null,
           items: [
-            "закрепляем все привычки;",
-            "автоматизируем питание, уход и тренировки;",
-            "составляем долгосрочный план поддержки;",
-            "устраняем последние слабые места;",
-            "формируем систему, которой легко придерживаться даже при высокой занятости и частых путешествиях.",
+            "lock in all habits;",
+            "automate nutrition, skincare and training;",
+            "build a long-term maintenance plan;",
+            "eliminate the last weak spots;",
+            "form a system that's easy to keep even with a heavy schedule and frequent travel.",
           ],
         },
       ],
-      closing: "К концу программы вы получаете не временный результат, а систему, которую сможете поддерживать годами без ощущения, что живёте «по программе».",
+      closing: "By the end of the program you don't get a temporary result — you get a system you can maintain for years without feeling like you live \"on a program\".",
     },
   },
 ];
@@ -117,9 +117,9 @@ export function ProgramContents() {
     <section id="program" className="py-24 sm:py-32 bg-[var(--bg-soft)] border-t border-[var(--line)] relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 relative">
         <Reveal>
-          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Ваш путь за 11 недель</p>
+          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Your 11-week path</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text text-balance">
-            Программа «Лицо, которому доверяют»
+            The "A face worth trusting" program
           </h2>
         </Reveal>
 
@@ -143,7 +143,7 @@ export function ProgramContents() {
                   <h3 className="text-[17px] font-semibold tracking-tight">{s.t}</h3>
                   <p className="text-[14px] leading-relaxed text-[var(--ink-soft)]">{s.d}</p>
                   <span className="mt-auto pt-2 text-[13px] font-medium text-emerald-700">
-                    {isActive ? "Открыто ↓" : "Подробнее →"}
+                    {isActive ? "Open ↓" : "More →"}
                   </span>
                 </button>
               </Reveal>
@@ -154,7 +154,7 @@ export function ProgramContents() {
         <Reveal key={active} delay={0.02}>
           <div className="mt-6 metallic-border rounded-2xl p-7 sm:p-9">
             <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              <span className="text-[13px] font-mono text-[var(--ink-soft)]">Этап 0{step.n}/4</span>
+              <span className="text-[13px] font-mono text-[var(--ink-soft)]">Stage 0{step.n}/4</span>
               <span className="text-[12px] font-medium uppercase tracking-wider text-[var(--ink-soft)] rounded-full border border-[var(--line)] bg-black/[0.02] px-2.5 py-1">{step.weeks}</span>
             </div>
             <h3 className="mt-3 text-2xl font-semibold tracking-tight chrome-text">{step.t}</h3>
@@ -177,7 +177,7 @@ export function ProgramContents() {
         </Reveal>
 
         <p className="mt-6 text-[14px] text-[var(--ink-soft)]">
-          11 недель — путь к лицу, которому доверяют. Нажмите на любой этап выше, чтобы увидеть, что именно происходит на этой стадии.
+          11 weeks — the path to a face people trust. Tap any stage above to see exactly what happens at that stage.
         </p>
       </div>
     </section>

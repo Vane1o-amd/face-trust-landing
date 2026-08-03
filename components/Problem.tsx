@@ -1,10 +1,10 @@
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
-  { t: "Тёмные круги и отёки", d: "Окружающие считывают, что с человеком что-то не так, ещё до того, как вы начали говорить. Вам сложнее довериться, с вами неприятно общаться, вы получаете меньше хороших возможностей — и результат хуже." },
-  { t: "Асимметрия лица", d: "Асимметрия искажает пропорции, а неправильно подобранная стрижка показывает все ваши недостатки и делает вас глупым в глазах окружающих. Вместо уважения — смех и отвержение." },
-  { t: "Прыщи, волосы, зубы, запах", d: "Прыщи, выпадение волос, проблемы с зубами, вы воняете. Фастфуд, обезвоживание, соусы — вы едите еду, которая делает вас слабым. Всё здоровье начинается изнутри." },
-  { t: "Круглое лицо, лишний жир, зажатость", d: "Пассивный образ жизни и куча проблем со здоровьем. Спорт занимает кучу времени, и вы просто не успеваете заниматься достаточно." },
+  { t: "Dark circles and puffiness", d: "People read that something is off before you even start talking. It's harder to trust you, unpleasant to deal with you, you get fewer good opportunities — and the results are worse." },
+  { t: "Facial asymmetry", d: "Asymmetry distorts proportions, and a wrong haircut exposes every flaw and makes you look foolish in others' eyes. Instead of respect — laughter and rejection." },
+  { t: "Acne, hair, teeth, smell", d: "Acne, hair loss, bad teeth, you stink. Fast food, dehydration, sauces — you eat food that makes you weak. All health starts from within." },
+  { t: "Round face, excess fat, stiffness", d: "A sedentary lifestyle and a pile of health problems. Sport takes a lot of time, and you simply can't train enough." },
 ];
 
 export function Problem() {
@@ -12,9 +12,9 @@ export function Problem() {
     <section id="problem" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Знакомо?</p>
+          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Sound familiar?</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display max-w-2xl chrome-text text-balance">
-            Почему лицо «не работает» на вас
+            Why your face isn't working for you
           </h2>
         </Reveal>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -30,7 +30,7 @@ export function Problem() {
         </div>
         <Reveal delay={0.2}>
           <p className="mt-10 max-w-2xl text-[17px] leading-relaxed text-[var(--ink)]">
-            Первое впечатление формируется за секунды. Мы делаем так, чтобы ваша внешность начала работать на вас.
+            A first impression forms in seconds. We make your appearance start working for you.
           </p>
         </Reveal>
       </div>

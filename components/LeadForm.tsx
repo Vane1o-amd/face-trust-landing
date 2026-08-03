@@ -30,12 +30,12 @@ export function LeadForm() {
     const f = e.target.files?.[0] ?? null;
     if (f) {
       if (f.size > 12 * 1024 * 1024) {
-        setError("Фото слишком большое (макс. 12 МБ)");
+        setError("Photo too large (max 12 MB)");
         e.target.value = "";
         return;
       }
       if (!/^image\/(jpe?g|png|webp)$/i.test(f.type)) {
-        setError("Разрешены только JPG, PNG, WEBP");
+        setError("Only JPG, PNG, WEBP allowed");
         e.target.value = "";
         return;
       }
@@ -50,7 +50,7 @@ export function LeadForm() {
     const hasPhotos = Boolean(front || side);
     // GDPR Art. 9: biometric data needs explicit consent before transfer.
     if (hasPhotos && !consent) {
-      setError("Подтвердите согласие на обработку фото");
+      setError("Confirm consent to process your photos");
       return;
     }
     setStatus("loading");
@@ -68,7 +68,7 @@ export function LeadForm() {
       const res = await fetch("/api/lead", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data?.error ?? "Не удалось отправить. Попробуйте ещё раз.");
+        setError(data?.error ?? "Failed to send. Try again.");
         setStatus("error");
         return;
       }
@@ -80,7 +80,7 @@ export function LeadForm() {
       if (frontRef.current) frontRef.current.value = "";
       if (sideRef.current) sideRef.current.value = "";
     } catch {
-      setError("Сеть недоступна. Попробуйте ещё раз.");
+      setError("Network unavailable. Try again.");
       setStatus("error");
     }
   }
@@ -89,13 +89,13 @@ export function LeadForm() {
     <section id="lead" className="py-24 sm:py-32 bg-moss border-t border-[var(--line)] relative overflow-hidden">
       <div className="relative mx-auto max-w-2xl px-5 sm:px-8">
         <Reveal>
-          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Заявка</p>
+          <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Application</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight chrome-text">
-            Бесплатная диагностика лица
+            Free face diagnosis
           </h2>
           <p className="mt-5 text-[16px] leading-relaxed text-[var(--ink-soft)]">
-            Оставьте контакт и приложите фото лица (спереди и сбоку). Свяжусь с вами
-            лично в течение дня и предложу план.
+            Leave a contact and attach face photos (front and side). I'll reach out
+            personally within a day and propose a plan.
           </p>
         </Reveal>
 
@@ -103,29 +103,29 @@ export function LeadForm() {
           <Reveal delay={0.05}>
             <div className="mt-10 metallic-border rounded-2xl p-10 text-center glow">
               <div className="mx-auto h-12 w-12 rounded-full bg-emerald-700/15 flex items-center justify-center text-2xl text-emerald-700">✓</div>
-              <h3 className="mt-5 text-xl font-semibold tracking-tight">Заявка отправлена</h3>
-              <p className="mt-2 text-[15px] text-[var(--ink-soft)]">Свяжусь с вами в Telegram в ближайшее время.</p>
+              <h3 className="mt-5 text-xl font-semibold tracking-tight">Application sent</h3>
+              <p className="mt-2 text-[15px] text-[var(--ink-soft)]">I'll contact you on Telegram shortly.</p>
             </div>
           </Reveal>
         ) : (
           <Reveal delay={0.05}>
             <form onSubmit={onSubmit} className="mt-10 metallic-border rounded-2xl p-6 sm:p-8 flex flex-col gap-4">
-              <Field label="Имя" required>
-                <input value={form.name} onChange={update("name")} required maxLength={80} className={inputCls} placeholder="Как к вам обращаться" />
+              <Field label="Name" required>
+                <input value={form.name} onChange={update("name")} required maxLength={80} className={inputCls} placeholder="What to call you" />
               </Field>
               <Field label="Telegram" required>
                 <input value={form.telegram} onChange={update("telegram")} required maxLength={80} className={inputCls} placeholder="@username" />
               </Field>
-              <Field label="Instagram (необязательно)">
+              <Field label="Instagram (optional)">
                 <input value={form.instagram} onChange={update("instagram")} maxLength={80} className={inputCls} placeholder="@username" />
               </Field>
-              <Field label="Чем вы недовольны в своей внешности?" required>
-                <textarea value={form.complaint} onChange={update("complaint")} required minLength={5} maxLength={2000} rows={4} className={`${inputCls} resize-none`} placeholder="Опишите своими словами" />
+              <Field label="What are you unhappy about in your appearance?" required>
+                <textarea value={form.complaint} onChange={update("complaint")} required minLength={5} maxLength={2000} rows={4} className={`${inputCls} resize-none`} placeholder="Describe in your own words" />
               </Field>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <PhotoField label="Фото лица спереди" file={front} onPick={(e) => pickPhoto("front", e)} inputRef={frontRef} />
-                <PhotoField label="Фото лица сбоку" file={side} onPick={(e) => pickPhoto("side", e)} inputRef={sideRef} />
+                <PhotoField label="Front face photo" file={front} onPick={(e) => pickPhoto("front", e)} inputRef={frontRef} />
+                <PhotoField label="Side face photo" file={side} onPick={(e) => pickPhoto("side", e)} inputRef={sideRef} />
               </div>
 
               {/* Honeypot — visually hidden but present in DOM so bots fill it */}
@@ -139,10 +139,10 @@ export function LeadForm() {
                   className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-700"
                 />
                 <span>
-                  Согласен на обработку биометрических данных (фото лица), их
-                  передачу в Telegram и хранение до 30 дней после ответа. См.{" "}
+                  I consent to the processing of biometric data (face photos), their
+                  transfer to Telegram and storage for up to 30 days after the reply. See{" "}
                   <Link href="/privacy" className="underline underline-offset-2 hover:text-[var(--ink)]">
-                    политику конфиденциальности
+                    privacy policy
                   </Link>.
                 </span>
               </label>
@@ -152,7 +152,7 @@ export function LeadForm() {
                 disabled={status === "loading"}
                 className="chrome-btn mt-2 rounded-full text-[15px] font-semibold px-6 py-3.5 transition disabled:opacity-60"
               >
-                {status === "loading" ? "Отправка…" : "Отправить заявку"}
+                {status === "loading" ? "Sending…" : "Send application"}
               </button>
               {error && <p className="text-[14px] text-red-700">{error}</p>}
             </form>
@@ -197,7 +197,7 @@ function PhotoField({
         className="hidden"
       />
       <span className="rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 text-[14px] text-[var(--ink-soft)] truncate transition-colors hover:border-[var(--ink)]">
-        {file ? file.name : "Нажмите, чтобы выбрать фото"}
+        {file ? file.name : "Tap to choose a photo"}
       </span>
     </label>
   );

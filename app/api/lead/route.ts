@@ -10,21 +10,21 @@ const MAX_BODY_BYTES = 26 * 1024 * 1024; // 26 MB total request (2 photos + form
 const ALLOWED_PHOTO = /^image\/(jpe?g|png|webp)$/i;
 
 const schema = z.object({
-  name: z.string().trim().min(2, "Введите имя").max(80),
+  name: z.string().trim().min(2, "Enter your name").max(80),
   telegram: z
     .string()
     .trim()
-    .min(3, "Укажите Telegram")
+    .min(3, "Enter your Telegram")
     .max(80)
-    .refine((v) => !/<|>/i.test(v), "Некорректный ввод"),
+    .refine((v) => !/<|>/i.test(v), "Invalid input"),
   instagram: z
     .string()
     .trim()
     .max(80)
-    .refine((v) => v === "" || !/<|>/i.test(v), "Некорректный ввод")
+    .refine((v) => v === "" || !/<|>/i.test(v), "Invalid input")
     .optional()
     .or(z.literal("")),
-  complaint: z.string().trim().min(5, "Опишите подробнее").max(2000),
+  complaint: z.string().trim().min(5, "Describe in more detail").max(2000),
   // Honeypot: real users leave this empty; bots fill it. Validated as an
   // optional string, then we branch on a non-empty value to drop the
   // submission silently. (Previously .max(0) rejected valid honeypot catches.)
@@ -45,14 +45,14 @@ async function checkMagicBytes(file: File): Promise<void> {
   const isWebp =
     buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 &&
     buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50;
-  if (!isJpeg && !isPng && !isWebp) throw new Error("Файл не является изображением");
+  if (!isJpeg && !isPng && !isWebp) throw new Error("File is not an image");
 }
 
 async function readPhoto(fd: FormData, key: string): Promise<File | null> {
   const v = fd.get(key);
   if (!(v instanceof File) || v.size === 0) return null;
-  if (v.size > MAX_PHOTO_BYTES) throw new Error(`Фото «${key}» слишком большое (макс. 12 МБ)`);
-  if (!ALLOWED_PHOTO.test(v.type)) throw new Error("Разрешены только JPG, PNG, WEBP");
+  if (v.size > MAX_PHOTO_BYTES) throw new Error(`Photo "${key}" is too large (max 12 MB)`);
+  if (!ALLOWED_PHOTO.test(v.type)) throw new Error("Only JPG, PNG, WEBP allowed");
   await checkMagicBytes(v);
   return v;
 }
@@ -72,19 +72,19 @@ function checkOrigin(req: Request): boolean {
 
 export async function POST(req: Request) {
   if (!checkOrigin(req)) {
-    return NextResponse.json({ error: "Запрос отклонён" }, { status: 403 });
+    return NextResponse.json({ error: "Request rejected" }, { status: 403 });
   }
 
   const contentLength = req.headers.get("content-length");
   if (contentLength && Number(contentLength) > MAX_BODY_BYTES) {
-    return NextResponse.json({ error: "Слишком большой запрос" }, { status: 413 });
+    return NextResponse.json({ error: "Request too large" }, { status: 413 });
   }
 
   let fd: FormData;
   try {
     fd = await req.formData();
   } catch {
-    return NextResponse.json({ error: "Некорректный запрос" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
   const data = {
@@ -97,7 +97,7 @@ export async function POST(req: Request) {
 
   const parsed = schema.safeParse(data);
   if (!parsed.success) {
-    const first = parsed.error.issues[0]?.message ?? "Проверьте поля";
+    const first = parsed.error.issues[0]?.message ?? "Check the fields";
     return NextResponse.json({ error: first }, { status: 422 });
   }
 
@@ -112,13 +112,13 @@ export async function POST(req: Request) {
     front = await readPhoto(fd, "front");
     side = await readPhoto(fd, "side");
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "Некорректное фото";
+    const msg = e instanceof Error ? e.message : "Invalid photo";
     return NextResponse.json({ error: msg }, { status: 422 });
   }
 
   if (!hasEnv()) {
     return NextResponse.json(
-      { error: "Сервис временно недоступен. Напишите в Telegram напрямую." },
+      { error: "Service temporarily unavailable. Message on Telegram directly." },
       { status: 503 }
     );
   }
@@ -138,7 +138,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(
-      { error: "Не удалось отправить. Попробуйте ещё раз." },
+      { error: "Failed to send. Try again." },
       { status: 502 }
     );
   }

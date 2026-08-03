@@ -4,11 +4,11 @@ import { useState } from "react";
 import { Reveal } from "./Reveal";
 
 const QA = [
-  { q: "Это не инвазивная косметология?", a: "Нет. Программа работает с тонусом, мимикой, привычками и образом жизни — без уколов и аппаратов." },
-  { q: "Сколько времени в день?", a: "15–25 минут в день и одна сессия в неделю. Реально совмещать с работой." },
-  { q: "Когда будут первые результаты?", a: "Видимые для окружающих изменения — уже на 4 неделе. Полный результат — к концу 11 недель." },
-  { q: "Нужно ли готовить самому и соблюдать жёсткую диету?", a: "Нет. Программа построена так, что можно питаться ресторанной едой и не готовить всегда — без жёстких ограничений." },
-  { q: "Что нужно для диагностики?", a: "Фото лица спереди и сбоку и короткое видео. Точный список пришлю после записи." },
+  { q: "Is this invasive cosmetology?", a: "No. The program works with tone, expression, habits and lifestyle — no injections, no devices." },
+  { q: "How much time per day?", a: "15–25 minutes a day and one session a week. Realistic to combine with work." },
+  { q: "When will the first results show?", a: "Changes visible to others by week 4. Full result by the end of 11 weeks." },
+  { q: "Do I have to cook and follow a strict diet?", a: "No. The program is built so you can eat restaurant food and not always cook — without strict restrictions." },
+  { q: "What's needed for the diagnosis?", a: "Front and side face photos and a short video. I'll send the exact list after you sign up." },
 ];
 
 export function Faq() {
@@ -17,7 +17,7 @@ export function Faq() {
     <section id="faq" className="py-24 sm:py-32 border-t border-[var(--line)] bg-stone">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <Reveal>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text">Частые вопросы</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text">Frequently asked questions</h2>
         </Reveal>
         <div className="mt-10 flex flex-col">
           {QA.map((item, i) => {

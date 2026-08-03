@@ -1,9 +1,9 @@
 import { Reveal } from "./Reveal";
 
 const STEPS = [
-  { t: "Ознакомление с вами", d: "Знакомимся с вами, вашей жизнью, привычками, питанием и активностью." },
-  { t: "Фото- и видео-анализ", d: "Присылаете фото лица спереди и сбоку и короткое видео. Создаю визуализацию результата и строю план улучшения." },
-  { t: "Созвон и старт", d: "Созваниваемся, я демонстрирую план, согласовываем его под ваш график и начинаем работу." },
+  { t: "Getting to know you", d: "We get to know you, your life, habits, nutrition and activity." },
+  { t: "Photo and video analysis", d: "You send front and side face photos and a short video. I create a visualization of the result and build an improvement plan." },
+  { t: "Call and start", d: "We get on a call, I present the plan, align it with your schedule and start the work." },
 ];
 
 export function Diagnostic() {
@@ -13,18 +13,18 @@ export function Diagnostic() {
         <div>
           <Reveal>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text text-balance">
-              За 15–20 минут внимания вашему лицу
+              15–20 minutes of attention to your face
             </h2>
           </Reveal>
           <Reveal delay={0.05}>
             <p className="mt-6 text-[17px] leading-relaxed text-[var(--ink-soft)] max-w-lg">
-              Мы посмотрим ваши преимущества и недостатки и составим стратегию
-              развития на 11 недель.
+              We'll look at your strengths and weaknesses and build an 11-week
+              development strategy.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <a href="#lead" className="chrome-btn mt-8 inline-flex rounded-full text-[15px] font-semibold px-6 py-3.5 transition whitespace-normal">
-              Записаться на диагностику
+              Book a diagnosis
             </a>
           </Reveal>
         </div>
