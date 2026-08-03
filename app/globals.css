@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #161E14;
-  --bg-soft: #1A2118;
-  --bg-card: #1F2A1B;
-  --bg-sand: #1A2118;
-  --bg-moss: #1B241A;
-  --bg-stone: #1E2618;
-  --bg-earth-card: #20291C;
-  --ink: #E8E4D6;
-  --ink-soft: #8E9783;
-  --line: #2A3324;
-  --moss: #7A9A68;
-  --moss-light: #9DB888;
-  --moss-deep: #4A6B3C;
-  --amber: #B89058;
-  --amber-light: #D4A86A;
+  --bg: #FFFFFF;
+  --bg-soft: #F7F8F5;
+  --bg-card: #FFFFFF;
+  --bg-sand: #F5F2EC;
+  --bg-moss: #EFF3EC;
+  --bg-stone: #F5F3EF;
+  --bg-earth-card: #FAF8F4;
+  --ink: #1F2A1B;
+  --ink-soft: #5A6552;
+  --line: #E2E5DE;
+  --moss: #4A6B3C;
+  --moss-light: #6B8A57;
+  --moss-deep: #3A5530;
+  --amber: #A87642;
+  --amber-light: #C89058;
   --sand: #8E9783;
   --bark: #6B7565;
   --stone: #7A8074;
@@ -45,7 +45,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: #E8E4D6; color: #161E14; }
+::selection { background: var(--moss-deep); color: #FFFFFF; }
 .tracking-tight-display { letter-spacing: -0.03em; }
 
 /* Earthy section backgrounds */
@@ -78,8 +78,8 @@ body {
 /* Primary CTA — dark on light, editorial */
 .chrome-btn {
   background: var(--ink);
-  color: var(--bg);
-  box-shadow: 0 8px 24px -12px rgba(232,228,214,0.25);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px -12px rgba(31,42,27,0.25);
 }
 .chrome-btn:hover { filter: brightness(1.08); }
 
@@ -91,16 +91,16 @@ body {
 }
 .ghost-btn:hover {
   border-color: var(--ink);
-  background: rgba(232,228,214,0.06);
+  background: rgba(31,42,27,0.04);
 }
 
 .glow {
-  box-shadow: 0 0 0 1px rgba(232,228,214,0.06), 0 30px 80px -40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 1px rgba(31,42,27,0.06), 0 30px 80px -40px rgba(0,0,0,0.12);
 }
 
 /* Visible focus for a11y */
 :focus-visible {
-  outline: 2px solid rgba(232,228,214,0.6);
+  outline: 2px solid rgba(74,107,60,0.6);
   outline-offset: 2px;
 }
 

@@ -26,7 +26,7 @@ export function Nav() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "backdrop-blur-xl bg-black/70 border-b border-[var(--line)]"
+          ? "backdrop-blur-xl bg-white/80 border-b border-[var(--line)]"
           : "bg-transparent"
       }`}
     >
@@ -57,7 +57,7 @@ export function Nav() {
         </div>
       </nav>
       {open && (
-        <div className="md:hidden border-t border-[var(--line)] bg-black/90 backdrop-blur-xl">
+        <div className="md:hidden border-t border-[var(--line)] bg-white/95 backdrop-blur-xl">
           <div className="mx-auto max-w-6xl px-5 py-4 flex flex-col">
             {LINKS.map((l) => (
               <a
