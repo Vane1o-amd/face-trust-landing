@@ -201,15 +201,15 @@ function PhotoField({
   return (
     <div className="flex flex-col gap-1.5">
       <span className="text-[13px] font-medium text-[var(--ink)]">{label}</span>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        onChange={onPick}
-        className="hidden"
-      />
       <div className="relative">
-        <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 pr-11 text-[14px] text-slate-600 truncate transition-colors hover:border-slate-900">
+        <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 pr-11 text-[14px] text-slate-600 transition-colors hover:border-slate-900">
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={onPick}
+            className="hidden"
+          />
           <span className="block truncate">{file ? file.name : "Tap to choose a photo"}</span>
         </label>
         {file && (
