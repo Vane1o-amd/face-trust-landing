@@ -51,7 +51,7 @@ export function Preloader() {
         {/* Wordmark */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/logo.png"
+          src="/wordmark.png"
           alt="Artur Ivashchenko"
           className="preloader-mono h-[48px] w-auto max-w-[260px] object-contain"
         />
