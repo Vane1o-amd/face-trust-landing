@@ -40,13 +40,14 @@ export async function sendLeadToTelegram(lead: Lead): Promise<void> {
         signal: AbortSignal.timeout(10000),
       }
     );
-  } catch {
-    throw new Error("Telegram unreachable");
+  } catch (e) {
+    throw new Error(`Telegram network error: ${e instanceof Error ? e.message : "timeout"}`);
   }
 
   if (!res.ok) {
-    // Don't leak response body or token-bearing URL — generic message only.
-    throw new Error("Telegram unreachable");
+    // Surface status + body to server logs; route masks long runs (token).
+    const text = await res.text().catch(() => "");
+    throw new Error(`Telegram sendMessage ${res.status}: ${text.slice(0, 300)}`);
   }
 }
 
@@ -58,10 +59,13 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
   if (photos.length === 0) return;
   const env = parseEnv();
 
-  // HEIC/HEIF has no Telegram "photo" decoder — send as document so Telegram
-  // accepts the file and the boss can open it. JPG/PNG/WEBP stay as photo.
+  // sendMediaGroup requires ALL items share the same type. If any photo is
+  // HEIC/HEIF (no Telegram photo decoder), send the whole group as document
+  // so Telegram accepts it and the boss can open every file. Otherwise photo.
+  const anyHeic = photos.some((p) => /^image\/(heic|heif)$/i.test(p.type));
+  const groupType = anyHeic ? "document" : "photo";
   const media = photos.map((p, i) => ({
-    type: /^image\/(heic|heif)$/i.test(p.type) ? ("document" as const) : ("photo" as const),
+    type: groupType as "photo" | "document",
     media: `attach://photo${i}`,
     caption: i === 0 ? `📷 Application photo — ${name}` : undefined,
   }));
@@ -72,8 +76,17 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
   const body = new FormData();
   body.append("media", JSON.stringify(media));
   photos.forEach((p, i) => {
-    const safeName = (p.name || `photo${i}.jpg`).replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 64);
-    body.append(`photo${i}`, p, safeName);
+    // Ensure a sensible extension so Telegram routes HEIC as a file and
+    // JPEG/PNG as images.
+    const ext = /^image\/(heic|heif)$/i.test(p.type)
+      ? ".heic"
+      : /png/i.test(p.type)
+        ? ".png"
+        : /webp/i.test(p.type)
+          ? ".webp"
+          : ".jpg";
+    const base = (p.name || `photo${i}`).replace(/\.[^.]+$/, "").replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 60);
+    body.append(`photo${i}`, p, `${base}${ext}`);
   });
 
   let res: Response;
@@ -86,11 +99,14 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
         signal: AbortSignal.timeout(30000),
       }
     );
-  } catch {
-    throw new Error("Telegram unreachable");
+  } catch (e) {
+    throw new Error(`Telegram network error: ${e instanceof Error ? e.message : "timeout"}`);
   }
 
   if (!res.ok) {
-    throw new Error("Telegram unreachable");
+    // Surface Telegram's actual status + body to server logs (the route
+    // masks long runs before logging, so the bot token stays redacted).
+    const text = await res.text().catch(() => "");
+    throw new Error(`Telegram sendMediaGroup ${res.status}: ${text.slice(0, 300)}`);
   }
 }
