@@ -74,6 +74,10 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
   // file. Appending a Blob made Telegram treat it as a file part named
   // "media.json", so the media group parsed empty and photos never posted.
   const body = new FormData();
+  // sendMediaGroup requires chat_id as a top-level form field (we previously
+  // omitted it, so Telegram rejected every photo group with 400 "chat_id is
+  // empty" even though the text alert landed fine).
+  body.append("chat_id", env.ARTUR_CHAT_ID);
   body.append("media", JSON.stringify(media));
   photos.forEach((p, i) => {
     // Ensure a sensible extension so Telegram routes HEIC as a file and
