@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 
 export function Hero() {
@@ -42,15 +45,63 @@ export function Hero() {
 }
 
 function HeroVisual() {
+  const [show, setShow] = useState<"before" | "after">("before");
+  const isAfter = show === "after";
   return (
     <div className="relative">
-      <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[var(--bg-card)] metallic-border glow">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/before/before-hero.png" alt="Artur Ivashchenko — appearance work" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-          <span className="text-[11px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2.5 py-1 border border-white/10">Before the program</span>
+      <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[var(--bg-card)] metallic-border glow select-none">
+        {/* Slide track — before on the left, after on the right */}
+        <div
+          className="absolute inset-0 flex w-[200%] will-change-transform"
+          style={{ transform: isAfter ? "translateX(-50%)" : "translateX(0%)", transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/before/before-hero.png" alt="Artur Ivashchenko — before the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/before/after-hero.jpg" alt="Artur Ivashchenko — after the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
         </div>
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+        {/* Badge */}
+        <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+          <span className="text-[11px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2.5 py-1 border border-white/10">
+            {isAfter ? "After the program" : "Before the program"}
+          </span>
+          {/* Progress dots */}
+          <span className="flex items-center gap-1.5" aria-hidden>
+            <span className={`h-1.5 rounded-full transition-all ${isAfter ? "w-3 bg-white/40" : "w-5 bg-white"}`} />
+            <span className={`h-1.5 rounded-full transition-all ${isAfter ? "w-5 bg-white" : "w-3 bg-white/40"}`} />
+          </span>
+        </div>
+
+        {/* Left corner tap zone → back to before */}
+        <button
+          type="button"
+          onClick={() => setShow("before")}
+          aria-label="See before the program"
+          className={`group absolute left-0 top-0 h-full w-1/3 flex items-center justify-start pl-3 transition-opacity ${isAfter ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/45 backdrop-blur text-white border border-white/15 group-hover:bg-black/65 transition-colors">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 2L4 8l6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        {/* Right corner tap zone → go to after */}
+        <button
+          type="button"
+          onClick={() => setShow("after")}
+          aria-label="See after the program"
+          className={`group absolute right-0 top-0 h-full w-1/3 flex items-center justify-end pr-3 transition-opacity ${isAfter ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/45 backdrop-blur text-white border border-white/15 group-hover:bg-black/65 transition-colors">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 2l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   );
