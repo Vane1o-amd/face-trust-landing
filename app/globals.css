@@ -129,3 +129,28 @@ body {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* Preloader — brand intro animation */
+@keyframes preloader-ring {
+  0%   { transform: scale(0.85); opacity: 0.0; }
+  40%  { opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 0.0; }
+}
+@keyframes preloader-mono {
+  0%   { opacity: 0; transform: translateY(6px); letter-spacing: 0.04em; }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); letter-spacing: -0.02em; }
+}
+@keyframes preloader-cap {
+  0%   { opacity: 0; letter-spacing: 0.05em; }
+  100% { opacity: 1; letter-spacing: 0.25em; }
+}
+.preloader-ring { animation: preloader-ring 1.6s ease-out infinite; }
+.preloader-mono { animation: preloader-mono 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.preloader-cap  { animation: preloader-cap 0.8s ease-out 0.15s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-ring { animation: none; opacity: 0.3; }
+  .preloader-mono { animation: none; opacity: 1; }
+  .preloader-cap  { animation: none; opacity: 1; }
+}

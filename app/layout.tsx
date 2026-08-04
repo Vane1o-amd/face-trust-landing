@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Preloader } from "@/components/Preloader";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -41,7 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }
