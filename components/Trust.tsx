@@ -9,9 +9,8 @@ const POINTS = [
 ];
 
 const PAIRS = [
-  { before: "/before/before-1.jpg", after: null as string | null },
-  { before: "/before/before-2.jpg", after: null as string | null },
-  { before: "/before/before-3.jpg", after: null as string | null },
+  { before: "/before/before-1.jpg", after: "/before/after-1.jpg" },
+  { before: "/before/before-2.png", after: "/before/after-2.png" },
 ];
 
 export function Trust() {
@@ -35,7 +34,7 @@ export function Trust() {
           </ul>
         </Reveal>
 
-        <div className="mt-14 grid sm:grid-cols-3 gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 gap-5 max-w-3xl">
           {PAIRS.map((pair, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <div className="metallic-border rounded-2xl p-3">
