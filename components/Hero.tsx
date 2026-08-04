@@ -65,7 +65,7 @@ function HeroVisual() {
 
         {/* Badge */}
         <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-          <span className="text-[11px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2.5 py-1 border border-white/10">
+          <span className="text-[12px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2.5 py-1 border border-white/10">
             {isAfter ? "After the program" : "Before the program"}
           </span>
           {/* Progress dots */}

@@ -141,12 +141,12 @@ export function LeadForm() {
               {/* Honeypot — visually hidden but present in DOM so bots fill it */}
               <input value={form.website} onChange={update("website")} tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" className="opacity-0 absolute -z-10 h-0 w-0" />
 
-              <label className="flex items-start gap-3 text-[13px] leading-relaxed text-[var(--ink-soft)] cursor-pointer">
+              <label className="flex items-start gap-3 text-[13px] leading-relaxed text-[var(--ink-soft)] cursor-pointer py-1">
                 <input
                   type="checkbox"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 accent-sky-700"
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-sky-700"
                 />
                 <span>
                   I consent to the processing of biometric data (face photos), their

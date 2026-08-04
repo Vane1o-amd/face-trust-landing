@@ -42,7 +42,10 @@ export function Nav() {
           ))}
         </div>
         <div className="flex items-center gap-3">
-          <a href="#lead" className="chrome-btn rounded-full text-[13px] sm:text-[14px] font-semibold px-4 py-2 sm:px-5 sm:py-2.5 transition whitespace-normal text-center">
+          <a
+            href="#lead"
+            className="chrome-btn inline-flex items-center justify-center rounded-full text-[13px] sm:text-[14px] font-semibold px-4 py-2.5 sm:px-5 sm:py-3 transition whitespace-normal text-center min-h-11"
+          >
             Free diagnosis
           </a>
           <button
@@ -50,7 +53,7 @@ export function Nav() {
             aria-label="Menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden h-10 w-10 grid place-items-center rounded-full border border-[var(--line)] text-[var(--ink)]"
+            className="md:hidden h-11 w-11 grid place-items-center rounded-full border border-[var(--line)] text-[var(--ink)]"
           >
             <span className="text-xl leading-none">{open ? "✕" : "☰"}</span>
           </button>

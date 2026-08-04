@@ -17,7 +17,7 @@ export function Bonuses() {
         <Reveal>
           <p className="text-[13px] font-medium uppercase tracking-wider text-[var(--ink-soft)]">Bonuses</p>
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight-display chrome-text text-balance">
-            Plus over $4 000 in extras
+            Plus over <span className="whitespace-nowrap">$4 000</span> in extras
           </h2>
         </Reveal>
         <div className="mt-12 grid sm:grid-cols-2 gap-4">

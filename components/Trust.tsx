@@ -43,14 +43,14 @@ export function Trust() {
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-[var(--bg-card)]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={pair.before} alt="Before the program" className="absolute inset-0 h-full w-full object-cover" />
-                    <span className="absolute top-2 left-2 text-[10px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2 py-0.5 border border-white/10">Before</span>
+                    <span className="absolute top-2 left-2 text-[12px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2 py-0.5 border border-white/10">Before</span>
                   </div>
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-[var(--bg-card)] border border-dashed border-[var(--line)] flex items-center justify-center">
                     {pair.after ? (
                       <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={pair.after} alt="After the program" className="absolute inset-0 h-full w-full object-cover" />
-                        <span className="absolute top-2 left-2 text-[10px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2 py-0.5 border border-white/10">After</span>
+                        <span className="absolute top-2 left-2 text-[12px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2 py-0.5 border border-white/10">After</span>
                       </>
                     ) : (
                       <span className="text-[12px] text-[var(--ink-soft)] text-center px-3">After<br />(photo soon)</span>
