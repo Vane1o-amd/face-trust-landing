@@ -45,6 +45,16 @@ export function LeadForm() {
     else setSide(f);
   }
 
+  function clearPhoto(which: "front" | "side") {
+    if (which === "front") {
+      setFront(null);
+      if (frontRef.current) frontRef.current.value = "";
+    } else {
+      setSide(null);
+      if (sideRef.current) sideRef.current.value = "";
+    }
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const hasPhotos = Boolean(front || side);
@@ -124,8 +134,8 @@ export function LeadForm() {
               </Field>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <PhotoField label="Front face photo" file={front} onPick={(e) => pickPhoto("front", e)} inputRef={frontRef} />
-                <PhotoField label="Side face photo" file={side} onPick={(e) => pickPhoto("side", e)} inputRef={sideRef} />
+                <PhotoField label="Front face photo" file={front} onPick={(e) => pickPhoto("front", e)} onClear={() => clearPhoto("front")} inputRef={frontRef} />
+                <PhotoField label="Side face photo" file={side} onPick={(e) => pickPhoto("side", e)} onClear={() => clearPhoto("side")} inputRef={sideRef} />
               </div>
 
               {/* Honeypot — visually hidden but present in DOM so bots fill it */}
@@ -179,15 +189,17 @@ function PhotoField({
   label,
   file,
   onPick,
+  onClear,
   inputRef,
 }: {
   label: string;
   file: File | null;
   onPick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClear: () => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }) {
   return (
-    <label className="flex flex-col gap-1.5 cursor-pointer">
+    <div className="flex flex-col gap-1.5">
       <span className="text-[13px] font-medium text-[var(--ink)]">{label}</span>
       <input
         ref={inputRef}
@@ -196,9 +208,23 @@ function PhotoField({
         onChange={onPick}
         className="hidden"
       />
-      <span className="rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 text-[14px] text-slate-600 truncate transition-colors hover:border-slate-900">
-        {file ? file.name : "Tap to choose a photo"}
-      </span>
-    </label>
+      <div className="relative">
+        <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--line)] bg-white px-4 py-3 pr-11 text-[14px] text-slate-600 truncate transition-colors hover:border-slate-900">
+          <span className="block truncate">{file ? file.name : "Tap to choose a photo"}</span>
+        </label>
+        {file && (
+          <button
+            type="button"
+            onClick={onClear}
+            aria-label={`Remove ${label}`}
+            className="absolute top-1/2 right-2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-900/5 hover:text-slate-900 transition-colors"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
