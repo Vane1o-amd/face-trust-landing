@@ -31,9 +31,10 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto max-w-6xl px-5 sm:px-8 h-20 sm:h-24 flex items-center justify-between">
-        <a href="#top" className="flex items-center shrink-0">
+        <a href="#top" className="flex items-center gap-3 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Artur Ivashchenko — A face worth trusting" className="h-8 sm:h-10 w-auto object-contain" />
+          <img src="/logo.png" alt="A face worth trusting" className="h-14 w-14 sm:h-20 sm:w-20 object-contain rounded-full" />
+          <span className="text-[15px] sm:text-[16px] font-semibold tracking-tight chrome-text hidden sm:block">Artur Ivashchenko</span>
         </a>
         <div className="hidden md:flex items-center gap-7 text-[14px] text-[var(--ink-soft)]">
           {LINKS.map((l) => (
