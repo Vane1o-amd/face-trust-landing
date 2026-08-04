@@ -46,7 +46,7 @@ function HeroVisual() {
     <div className="relative">
       <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[var(--bg-card)] metallic-border glow">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/before/before-1.jpg" alt="Artur Ivashchenko — appearance work" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/before/before-hero.png" alt="Artur Ivashchenko — appearance work" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
           <span className="text-[11px] font-medium uppercase tracking-wider bg-black/60 backdrop-blur text-white rounded-full px-2.5 py-1 border border-white/10">Before the program</span>
