@@ -201,10 +201,20 @@ export async function POST(req: Request) {
     });
     if (front || side) {
       const photos = [front, side].filter((f): f is File => f !== null);
-      await sendLeadPhotos(photos, parsed.data.name);
+      try {
+        await sendLeadPhotos(photos, parsed.data.name);
+      } catch (photoErr) {
+        // Text already delivered to Artur; log the photo failure so the
+        // Vercel logs show the Telegram response status/body instead of a
+        // bare 502. Mask anything that could leak the token.
+        const msg = photoErr instanceof Error ? photoErr.message : String(photoErr);
+        console.error("[lead] sendLeadPhotos failed:", msg.replace(/[A-Za-z0-9_-]{20,}/g, "***"));
+      }
     }
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[lead] sendLeadToTelegram failed:", msg.replace(/[A-Za-z0-9_-]{20,}/g, "***"));
     return NextResponse.json(
       { error: "Failed to send. Try again." },
       { status: 502 }
