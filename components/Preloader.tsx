@@ -51,9 +51,17 @@ export function Preloader() {
         <div className="relative flex h-20 w-20 items-center justify-center">
           {/* Expanding ring */}
           <span className="preloader-ring absolute inset-0 rounded-full border border-[var(--metallic)]/30" />
-          {/* Monogram */}
+          {/* Monogram — letter A in metallic serif */}
           <span className="chrome-text preloader-mono text-5xl font-semibold">A</span>
         </div>
+        {/* Wordmark */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt="Artur Ivashchenko"
+          className="preloader-mono h-[44px] w-auto max-w-[220px] object-contain"
+          style={{ animationDelay: "0.05s" }}
+        />
         <p className="preloader-cap text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--ink-soft)]">
           A face worth trusting
         </p>
