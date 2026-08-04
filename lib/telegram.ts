@@ -58,8 +58,10 @@ export async function sendLeadPhotos(photos: File[], name: string): Promise<void
   if (photos.length === 0) return;
   const env = parseEnv();
 
-  const media = photos.map((_, i) => ({
-    type: "photo" as const,
+  // HEIC/HEIF has no Telegram "photo" decoder — send as document so Telegram
+  // accepts the file and the boss can open it. JPG/PNG/WEBP stay as photo.
+  const media = photos.map((p, i) => ({
+    type: /^image\/(heic|heif)$/i.test(p.type) ? ("document" as const) : ("photo" as const),
     media: `attach://photo${i}`,
     caption: i === 0 ? `📷 Application photo — ${name}` : undefined,
   }));

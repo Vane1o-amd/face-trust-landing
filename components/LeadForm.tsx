@@ -83,8 +83,8 @@ export function LeadForm() {
       e.target.value = "";
       return;
     }
-    if (!/^image\/(jpe?g|png|webp)$/i.test(f.type)) {
-      setError("Only JPG, PNG, WEBP allowed");
+    if (!/^image\/(jpe?g|png|webp|heic|heif)$/i.test(f.type)) {
+      setError("Only JPG, PNG, WEBP, HEIC allowed");
       e.target.value = "";
       return;
     }
@@ -95,9 +95,11 @@ export function LeadForm() {
       if (which === "front") setFront(small);
       else setSide(small);
     } catch {
-      setError("Cannot read that image. Try another photo.");
-      if (which === "front") setFront(null);
-      else setSide(null);
+      // Browser cannot decode the image (e.g. iPhone HEIC has no native
+      // <img> decoder). Send the original file unchanged — Telegram handles
+      // HEIC, and the server validates magic bytes before forwarding.
+      if (which === "front") setFront(f);
+      else setSide(f);
     } finally {
       setBusyPhoto(null);
     }
@@ -269,7 +271,7 @@ function PhotoField({
           <input
             ref={inputRef}
             type="file"
-            accept="image/jpeg,image/png,image/webp"
+            accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
             onChange={onPick}
             disabled={busy}
             className="hidden"

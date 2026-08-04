@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 
 const MAX_PHOTO_BYTES = 12 * 1024 * 1024; // 12 MB per photo
 const MAX_BODY_BYTES = 26 * 1024 * 1024; // 26 MB total request (2 photos + form overhead)
-const ALLOWED_PHOTO = /^image\/(jpe?g|png|webp)$/i;
+const ALLOWED_PHOTO = /^image\/(jpe?g|png|webp|heic|heif)$/i;
 
 // --- Rate limit (H2) -------------------------------------------------------
 // Simple in-memory sliding window keyed by client IP. Best-effort under
@@ -93,7 +93,10 @@ async function checkMagicBytes(file: File): Promise<void> {
   const isWebp =
     buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 &&
     buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50;
-  if (!isJpeg && !isPng && !isWebp) throw new Error("File is not an image");
+  // HEIC/HEIF: ISO BMFF ftyp box at offset 4 — "ftyp" + brand (heic/heix/mif1/msf1).
+  const str = new TextDecoder().decode(buf.slice(4, 12));
+  const isHeic = str.startsWith("ftyp") && /^(heic|heix|hevc|mif1|msf1)$/.test(str.slice(4));
+  if (!isJpeg && !isPng && !isWebp && !isHeic) throw new Error("File is not an image");
 }
 
 async function readPhoto(fd: FormData, key: string): Promise<File | null> {
