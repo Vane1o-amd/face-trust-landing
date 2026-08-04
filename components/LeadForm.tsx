@@ -71,6 +71,9 @@ export function LeadForm() {
       fd.append("telegram", form.telegram);
       fd.append("instagram", form.instagram);
       fd.append("complaint", form.complaint);
+      // Server re-verifies consent (H1) — never rely on the client alone for
+      // GDPR Art. 9 biometric consent.
+      fd.append("consent", consent ? "true" : "");
       fd.append("website", form.website);
       if (front) fd.append("front", front);
       if (side) fd.append("side", side);

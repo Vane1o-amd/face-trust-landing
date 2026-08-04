@@ -9,6 +9,46 @@ const MAX_PHOTO_BYTES = 12 * 1024 * 1024; // 12 MB per photo
 const MAX_BODY_BYTES = 26 * 1024 * 1024; // 26 MB total request (2 photos + form overhead)
 const ALLOWED_PHOTO = /^image\/(jpe?g|png|webp)$/i;
 
+// --- Rate limit (H2) -------------------------------------------------------
+// Simple in-memory sliding window keyed by client IP. Best-effort under
+// serverless: each warm instance keeps its own map, so this blocks bursts
+// from a single IP hitting a warm instance. For multi-instance hardening,
+// back this with Upstash/KV later — but an in-memory guard already stops
+// the casual flood of fake leads (the actual threat here).
+const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const RATE_MAX = 3; // 3 submissions per window per IP
+const rateMap = new Map<string, number[]>();
+
+function clientIp(req: Request): string {
+  const fwd = req.headers.get("x-vercel-forwarded-for") || req.headers.get("x-forwarded-for");
+  if (fwd) return fwd.split(",")[0]!.trim();
+  return req.headers.get("x-real-ip") ?? "unknown";
+}
+
+function rateLimit(ip: string): boolean {
+  const now = Date.now();
+  const hits = (rateMap.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (hits.length >= RATE_MAX) {
+    rateMap.set(ip, hits);
+    return false;
+  }
+  hits.push(now);
+  rateMap.set(ip, hits);
+  return true;
+}
+
+// Periodically prune dead entries so the map does not grow unbounded.
+// Runs only on request; no timer needed.
+function pruneRateMap() {
+  if (rateMap.size < 1000) return;
+  const now = Date.now();
+  for (const [ip, hits] of rateMap) {
+    const live = hits.filter((t) => now - t < RATE_WINDOW_MS);
+    if (live.length === 0) rateMap.delete(ip);
+    else rateMap.set(ip, live);
+  }
+}
+
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   telegram: z
@@ -25,6 +65,14 @@ const schema = z.object({
     .optional()
     .or(z.literal("")),
   complaint: z.string().trim().min(5, "Describe in more detail").max(2000),
+  // H1 (server-side consent): biometric data requires explicit, affirmative
+  // consent (GDPR Art. 9). The client gates the submit button on this, but the
+  // server must re-verify — never trust the client for a legal precondition.
+  // Accepted truthy markers from a checkbox: "true" | "on" | "yes".
+  consent: z
+    .enum(["true", "on", "yes"])
+    .optional()
+    .transform((v) => v === "true" || v === "on" || v === "yes"),
   // Honeypot: real users leave this empty; bots fill it. Validated as an
   // optional string, then we branch on a non-empty value to drop the
   // submission silently. (Previously .max(0) rejected valid honeypot catches.)
@@ -71,8 +119,19 @@ function checkOrigin(req: Request): boolean {
 }
 
 export async function POST(req: Request) {
+  pruneRateMap();
+
   if (!checkOrigin(req)) {
     return NextResponse.json({ error: "Request rejected" }, { status: 403 });
+  }
+
+  // Rate limit before any heavy parsing / file reads.
+  const ip = clientIp(req);
+  if (!rateLimit(ip)) {
+    return NextResponse.json(
+      { error: "Too many submissions. Please wait a few minutes and try again." },
+      { status: 429 }
+    );
   }
 
   const contentLength = req.headers.get("content-length");
@@ -92,6 +151,7 @@ export async function POST(req: Request) {
     telegram: readField(fd, "telegram"),
     instagram: readField(fd, "instagram"),
     complaint: readField(fd, "complaint"),
+    consent: readField(fd, "consent"),
     website: readField(fd, "website"),
   };
 
@@ -114,6 +174,14 @@ export async function POST(req: Request) {
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Invalid photo";
     return NextResponse.json({ error: msg }, { status: 422 });
+  }
+
+  // H1: photos are biometric data — require proven server-side consent.
+  if ((front || side) && !parsed.data.consent) {
+    return NextResponse.json(
+      { error: "Confirm consent to process your photos" },
+      { status: 422 }
+    );
   }
 
   if (!hasEnv()) {
