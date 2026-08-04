@@ -53,9 +53,9 @@ export function Preloader() {
         <img
           src="/logo.png"
           alt="Artur Ivashchenko"
-          className="preloader-mono h-[176px] w-auto max-w-[880px] object-contain"
+          className="preloader-mono h-[77px] sm:h-[176px] w-auto max-w-[90vw] sm:max-w-[880px] object-contain"
         />
-        <p className="preloader-cap text-[22px] font-medium uppercase tracking-[0.25em] text-[var(--ink-soft)]">
+        <p className="preloader-cap text-[11px] sm:text-[22px] font-medium uppercase tracking-[0.25em] text-[var(--ink-soft)]">
           A face worth trusting
         </p>
       </div>
