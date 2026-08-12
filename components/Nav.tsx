@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { href: "#problem", label: "Проблема" },
-  { href: "#program", label: "Программа" },
-  { href: "#timeline", label: "Сроки" },
-  { href: "#bonuses", label: "Бонусы" },
-  { href: "#guarantee", label: "Гарантия" },
+  { href: "#problem", label: "Problem" },
+  { href: "#program", label: "Program" },
+  { href: "#timeline", label: "Timeline" },
+  { href: "#bonuses", label: "Bonuses" },
+  { href: "#guarantee", label: "Guarantee" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -26,15 +26,15 @@ export function Nav() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "backdrop-blur-xl bg-black/70 border-b border-[var(--line)]"
+          ? "backdrop-blur-xl bg-white/80 border-b border-[var(--line)]"
           : "bg-transparent"
       }`}
     >
       <nav className="mx-auto max-w-6xl px-5 sm:px-8 h-20 sm:h-24 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Лицо, которому доверяют" className="h-14 w-14 sm:h-20 sm:w-20 object-contain rounded-full" />
-          <span className="text-[15px] sm:text-[16px] font-semibold tracking-tight chrome-text hidden sm:block">Артур Иващенко</span>
+          <img src="/logo.png" alt="A face worth trusting" className="h-14 w-14 sm:h-20 sm:w-20 object-contain rounded-full" />
+          <span className="text-[15px] sm:text-[16px] font-semibold tracking-tight chrome-text hidden sm:block">Artur Ivashchenko</span>
         </a>
         <div className="hidden md:flex items-center gap-7 text-[14px] text-[var(--ink-soft)]">
           {LINKS.map((l) => (
@@ -42,22 +42,25 @@ export function Nav() {
           ))}
         </div>
         <div className="flex items-center gap-3">
-          <a href="#lead" className="chrome-btn rounded-full text-[13px] sm:text-[14px] font-semibold px-4 py-2 sm:px-5 sm:py-2.5 transition whitespace-normal text-center">
-            Бесплатная диагностика
+          <a
+            href="#lead"
+            className="chrome-btn inline-flex items-center justify-center rounded-full text-[13px] sm:text-[14px] font-semibold px-4 py-2.5 sm:px-5 sm:py-3 transition whitespace-normal text-center min-h-11"
+          >
+            Free diagnosis
           </a>
           <button
             type="button"
-            aria-label="Меню"
+            aria-label="Menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden h-10 w-10 grid place-items-center rounded-full border border-[var(--line)] text-[var(--ink)]"
+            className="md:hidden h-11 w-11 grid place-items-center rounded-full border border-[var(--line)] text-[var(--ink)]"
           >
             <span className="text-xl leading-none">{open ? "✕" : "☰"}</span>
           </button>
         </div>
       </nav>
       {open && (
-        <div className="md:hidden border-t border-[var(--line)] bg-black/90 backdrop-blur-xl">
+        <div className="md:hidden border-t border-[var(--line)] bg-white/95 backdrop-blur-xl">
           <div className="mx-auto max-w-6xl px-5 py-4 flex flex-col">
             {LINKS.map((l) => (
               <a
