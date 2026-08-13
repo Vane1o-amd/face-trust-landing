@@ -56,9 +56,9 @@ function HeroVisual() {
           style={{ transform: isAfter ? "translateX(-50%)" : "translateX(0%)", transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/before/before-hero.jpg" alt="Artur Ivashchenko — before the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
+          <img src="/before/before-hero.jpg" alt="EVOREDGE — before the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/before/after-hero.jpg" alt="Artur Ivashchenko — after the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
+          <img src="/before/after-hero.jpg" alt="EVOREDGE — after the program" draggable={false} className="relative w-1/2 h-full object-cover shrink-0" />
         </div>
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

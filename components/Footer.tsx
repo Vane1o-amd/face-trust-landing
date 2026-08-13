@@ -5,7 +5,7 @@ export function Footer() {
         <div className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" className="h-14 w-14 sm:h-20 sm:w-20 object-contain rounded-full" />
-          <span className="text-[16px] font-semibold chrome-text">Artur Ivashchenko</span>
+          <span className="text-[16px] font-semibold chrome-text">EVOREDGE</span>
         </div>
         <p className="hidden sm:block text-[14px] text-[var(--ink-soft)]">"A face worth trusting in 11 weeks" · {new Date().getFullYear()}</p>
         <p className="text-[14px] text-[var(--ink-soft)]">A personal program for men</p>

@@ -34,7 +34,7 @@ export function Nav() {
         <a href="#top" className="flex items-center gap-3 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="A face worth trusting" className="h-14 w-14 sm:h-20 sm:w-20 object-contain rounded-full" />
-          <span className="text-[15px] sm:text-[16px] font-semibold tracking-tight chrome-text hidden sm:block">Artur Ivashchenko</span>
+          <span className="text-[15px] sm:text-[16px] font-semibold tracking-tight chrome-text hidden sm:block">EVOREDGE</span>
         </a>
         <div className="hidden md:flex items-center gap-7 text-[14px] text-[var(--ink-soft)]">
           {LINKS.map((l) => (
