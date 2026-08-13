@@ -4,8 +4,7 @@ const BONUSES = [
   { t: "Personal 5-minute morning warm-up", price: "$200", d: "Built for your body, mobility and lifestyle. Helps you wake up faster, release stiffness and prepare your body for the day." },
   { t: "Personal vitamin and supplement protocol", price: "$350", d: "Only what actually makes sense for you. No dozens of unnecessary jars and extra costs." },
   { t: "A system that helps you love training", price: "$1 000", d: "We pick an activity that suits you. The goal is to make sport stop being a duty and become part of your lifestyle." },
-  { t: "\"Life without limits\" — a social nutrition system", price: "$349", d: "How to go to restaurants. How to attend birthdays. How to travel. How to lose weight without feeling isolated from society." },
-  { t: "Personal nutrition plan for those constantly on the road", price: "$400", d: "For entrepreneurs. For business trips. For those who don't like to cook. What to buy at the supermarket. What to order at a restaurant." },
+  { t: "\"Life without limits\" — nutrition without stepping away from life", price: "$749", d: "How to go to restaurants, attend birthdays and travel while losing weight without feeling isolated from society. A personal plan for entrepreneurs and business trips: what to buy at the supermarket and what to order at a restaurant if you don't like to cook." },
   { t: "Personal body-fat reduction plan", price: "$649", d: "Without banning your favorite foods. Without constant calorie counting. Using the sport you love." },
   { t: "Expressive face system", price: "$1 200", d: "How to reduce puffiness. How to improve skin quality. How to make your face more expressive. Personal care that takes about 10 minutes a day." },
 ];
@@ -41,7 +40,7 @@ export function Bonuses() {
               You get all of it for $500
             </p>
             <p className="mt-3 text-[15px] leading-relaxed text-[var(--ink-soft)] max-w-xl mx-auto">
-              Instead of the full price — just one payment, and all seven bonuses are included in the program.
+              Instead of the full price — just one payment, and all six bonuses are included in the program.
             </p>
             <a href="#lead" className="chrome-btn mt-7 inline-flex rounded-full text-[15px] font-semibold px-6 py-3.5 transition whitespace-normal">
               Book a diagnosis
